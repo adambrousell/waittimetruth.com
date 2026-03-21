@@ -471,7 +471,7 @@ function goStep(n, skip) {
   window.scrollTo({top:document.getElementById('reportWrap').offsetTop-60,behavior:'smooth'});
 }
 
-// ── PARK SELECT → FETCH RIDES FROM AIRTABLE ───────────
+// ── PARK SELECT → FETCH RIDES + LIVE WAIT TIMES ───────
 document.getElementById('parkSelect').addEventListener('change', async function(){
   const val = this.value;
   const rs = document.getElementById('rideSelect');
@@ -484,57 +484,90 @@ document.getElementById('parkSelect').addEventListener('change', async function(
   state.rideName=''; state.postedWait=null;
   document.getElementById('rideLoading').style.display='block';
   document.getElementById('rideLoading').textContent='\u21bb Loading rides...';
+
+  // Fetch Airtable rides + queue-times live waits in parallel
+  let airtableRides = [];
+  let liveWaits = {}; // rideName → wait minutes
+
   try {
-    const res = await fetch(RECEIPT_WORKER + '/rides?park=' + encodeURIComponent(state.parkName));
-    const data = await res.json();
-    document.getElementById('rideLoading').style.display='none';
-    if(data.rides && data.rides.length){
-      // Group by RideType
-      const groups = {};
-      data.rides.forEach(ride => {
-        const g = ride.type || 'Other';
-        if(!groups[g]) groups[g] = [];
-        groups[g].push(ride);
-      });
-      const order = ['Coaster','Flat Ride','Water Ride','Dark Ride','Transport','Show','Other'];
-      order.forEach(g => {
-        if(!groups[g]) return;
-        const og = document.createElement('optgroup');
-        og.label = g;
-        groups[g].forEach(ride => {
-          const opt = document.createElement('option');
-          opt.value = ride.name + '|';
-          opt.textContent = ride.name;
-          og.appendChild(opt);
-        });
-        rs.appendChild(og);
-      });
-      // Any types not in the predefined order
-      Object.keys(groups).forEach(g => {
-        if(order.includes(g)) return;
-        const og = document.createElement('optgroup');
-        og.label = g;
-        groups[g].forEach(ride => {
-          const opt = document.createElement('option');
-          opt.value = ride.name + '|';
-          opt.textContent = ride.name;
-          og.appendChild(opt);
-        });
-        rs.appendChild(og);
-      });
-      // Manual entry fallback
-      const manOpt = document.createElement('option');
-      manOpt.value = 'Other|';
-      manOpt.textContent = '\u270f\ufe0f Other / not listed';
-      rs.appendChild(manOpt);
-      rs.disabled=false;
-    } else {
-      const opt=document.createElement('option');
-      opt.value='Other|'; opt.textContent='Other / not listed';
-      rs.appendChild(opt); rs.disabled=false;
+    const [ridesRes, qtRes] = await Promise.allSettled([
+      fetch(RECEIPT_WORKER + '/rides?park=' + encodeURIComponent(state.parkName)),
+      state.qtId ? fetch('https://queue-times.com/parks/' + state.qtId + '/queue_times.json') : Promise.reject('no qtId')
+    ]);
+
+    // Parse Airtable rides
+    if (ridesRes.status === 'fulfilled') {
+      const ridesData = await ridesRes.value.json();
+      airtableRides = ridesData.rides || [];
     }
-  } catch(e){
-    document.getElementById('rideLoading').style.display='none';
+
+    // Parse queue-times live waits
+    if (qtRes.status === 'fulfilled' && qtRes.value.ok) {
+      try {
+        const qtData = await qtRes.value.json();
+        // qtData is an array of lands, each with rides array
+        (qtData.lands || qtData || []).forEach(land => {
+          (land.rides || []).forEach(r => {
+            if (r.name && r.wait_time != null) {
+              liveWaits[r.name.toLowerCase().trim()] = r.is_open ? r.wait_time : null;
+            }
+          });
+        });
+      } catch(e) { /* queue-times parse failed, continue without */ }
+    }
+  } catch(e) { /* both failed */ }
+
+  document.getElementById('rideLoading').style.display='none';
+
+  if (airtableRides.length) {
+    // Merge live waits into rides by fuzzy name match
+    const ridesWithWaits = airtableRides.map(ride => {
+      const key = ride.name.toLowerCase().trim();
+      const wait = liveWaits[key] ?? null;
+      return { ...ride, postedWait: wait };
+    });
+
+    // Group by RideType
+    const groups = {};
+    ridesWithWaits.forEach(ride => {
+      const g = ride.type || 'Other';
+      if(!groups[g]) groups[g] = [];
+      groups[g].push(ride);
+    });
+    const order = ['Coaster','Flat Ride','Water Ride','Dark Ride','Transport','Show','Other'];
+    order.forEach(g => {
+      if(!groups[g]) return;
+      const og = document.createElement('optgroup');
+      og.label = g;
+      groups[g].forEach(ride => {
+        const opt = document.createElement('option');
+        // Store posted wait after the pipe so rideSelect change handler picks it up
+        opt.value = ride.name + '|' + (ride.postedWait || '');
+        opt.textContent = ride.postedWait != null ? ride.name + ' \u2014 posted ' + ride.postedWait + ' min' : ride.name;
+        og.appendChild(opt);
+      });
+      rs.appendChild(og);
+    });
+    // Any types not in the predefined order
+    Object.keys(groups).forEach(g => {
+      if(order.includes(g)) return;
+      const og = document.createElement('optgroup');
+      og.label = g;
+      groups[g].forEach(ride => {
+        const opt = document.createElement('option');
+        opt.value = ride.name + '|' + (ride.postedWait || '');
+        opt.textContent = ride.postedWait != null ? ride.name + ' \u2014 posted ' + ride.postedWait + ' min' : ride.name;
+        og.appendChild(opt);
+      });
+      rs.appendChild(og);
+    });
+    // Manual entry fallback
+    const manOpt = document.createElement('option');
+    manOpt.value = 'Other|';
+    manOpt.textContent = '\u270f\ufe0f Other / not listed';
+    rs.appendChild(manOpt);
+    rs.disabled=false;
+  } else {
     const opt=document.createElement('option');
     opt.value='Other|'; opt.textContent='Other / not listed';
     rs.appendChild(opt); rs.disabled=false;
@@ -552,6 +585,9 @@ document.getElementById('rideSelect').addEventListener('change',function(){
     document.getElementById('postedWaitDisplay').textContent=state.postedWait;
     document.getElementById('postedRef').style.display='flex';
     document.getElementById('postedRef2').textContent=state.postedWait;
+  } else {
+    document.getElementById('postedRow').style.display='none';
+    document.getElementById('postedRef').style.display='none';
   }
 });
 
@@ -619,12 +655,15 @@ function buildReceipt(){
   else banner.textContent='WAIT TIME REPORTED';
 
   let tweet='';
-  if(posted&&actual&&diff>5) tweet=`${park} posted ${posted} min for ${ride}. I waited ${actual}. That's ${factor}\u00d7 off. How accurate is your park? waittimetruth.com #themepark #waittime`;
-  else if(posted&&actual&&isLonger) tweet=`${ride} at ${park} \u2014 posted ${posted} min but I waited ${actual}. Tracking wait time accuracy at waittimetruth.com`;
-  else tweet=`Just checked wait time accuracy at ${park} on waittimetruth.com \u2014 how accurate is your park?`;
+  const fallbackUrl = 'waittimetruth.com/report';
+  if(posted&&actual&&diff>5) tweet=`${park} posted ${posted} min for ${ride}. I waited ${actual}. That's ${factor}\u00d7 off. How accurate is your park?\n${fallbackUrl} #themepark #waittime`;
+  else if(posted&&actual&&isLonger) tweet=`${ride} at ${park} \u2014 posted ${posted} min but I waited ${actual}.\n${fallbackUrl}`;
+  else tweet=`Just checked wait time accuracy at ${park} on waittimetruth.com \u2014 how accurate is your park?\n${fallbackUrl}`;
   document.getElementById('tweetBtn').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(tweet);
+  document.getElementById('fbBtn').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://'+fallbackUrl);
 
   state._receiptData={park,ride,posted,actual,factor,diff,verdict,verdictClass,isOff,isLonger};
+  state.receiptUrl = null; // will be set by submitReport callback
 
   const arHeadline=document.getElementById('arCtaHeadline');
   if(state.parkName) arHeadline.textContent='Audit '+state.parkName+"'s full operations";
@@ -689,10 +728,15 @@ function downloadReceipt(){
   a.download=`waittime-receipt-${slug}.png`;a.href=c.toDataURL('image/png');a.click();
 }
 function copyCaption(){
-  const d=state._receiptData;let cap='';
-  if(d.posted&&d.actual&&d.diff>5) cap=`${d.park} posted ${d.posted} min. I waited ${d.actual}. That's ${d.factor}\u00d7 off.\n\nHow accurate is your park?.\n\nReport yours \ud83d\udc47\nwaittimetruth.com/report\n\n#themepark #waittime #ratingvalue`;
-  else cap=`Checked wait time accuracy at ${d.park}. Tracking wait time accuracy at waittimetruth.com/report\n\n#themepark #waittime`;
-  navigator.clipboard.writeText(cap).then(()=>{const b=event.target;b.textContent='\u2713 Copied!';setTimeout(()=>b.textContent='\ud83d\udccb Copy Caption',2000);});
+  const d=state._receiptData;
+  const url = state.receiptUrl || 'waittimetruth.com/report';
+  let cap='';
+  if(d.posted&&d.actual&&d.diff>5) cap=`${d.park} posted ${d.posted} min. I waited ${d.actual}. That's ${d.factor}\u00d7 off.\n\nHow accurate is your park?\n\nReport yours \ud83d\udc47\n${url}\n\n#themepark #waittime #ratingvalue`;
+  else cap=`Checked wait time accuracy at ${d.park}.\n\n${url}\n\n#themepark #waittime`;
+  navigator.clipboard.writeText(cap).then(()=>{
+    const btn = document.querySelector('[onclick="copyCaption()"]');
+    if(btn){btn.textContent='\u2713 Copied!';setTimeout(()=>btn.textContent='\ud83d\udccb Copy Caption',2000);}
+  });
 }
 async function shareNative(){
   const c=document.getElementById('receiptCanvas');const d=state._receiptData;
