@@ -649,7 +649,7 @@ function buildReceipt(){
 
   const banner=document.getElementById('verdictBanner');
   banner.className='verdict-banner '+verdictClass;
-  if(isOff) banner.textContent='THE PARK GOT IT WRONG \u2014 '+diff+' MIN OFF';
+  if(isOff) banner.textContent='SIGNIFICANTLY OFF \u2014 '+diff+' MIN OVERSTATED';
   else if(isLonger) banner.textContent='LONGER THAN POSTED \u2014 '+(actual-posted)+' MIN UNDERSTATED';
   else if(posted&&actual) banner.textContent='ACCURATE \u2713';
   else banner.textContent='WAIT TIME REPORTED';
@@ -692,7 +692,7 @@ function generateCanvas({park,ride,posted,actual,factor,diff,verdictClass,isOff,
   ctx.fillStyle=bc[verdictClass]||'#555'; ctx.fillRect(0,0,W,200);
   ctx.fillStyle=verdictClass==='off'?'#fff':'#0a0a0a';
   ctx.font='bold 52px sans-serif'; ctx.textAlign='center';
-  if(isOff) {ctx.fillText('THE PARK GOT IT WRONG',W/2,90);ctx.font='bold 38px sans-serif';ctx.fillText(diff+' MINUTES OFF',W/2,148);}
+  if(isOff) {ctx.fillText('SIGNIFICANTLY OFF',W/2,90);ctx.font='bold 38px sans-serif';ctx.fillText(diff+' MINUTES OVERSTATED',W/2,148);}
   else if(isLonger){ctx.fillText('LONGER THAN POSTED',W/2,90);ctx.font='bold 38px sans-serif';ctx.fillText((actual-posted)+' MIN UNDERSTATED',W/2,148);}
   else {ctx.fillText('ACCURATE \u2713',W/2,110);}
 
