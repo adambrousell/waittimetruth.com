@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodology — How We Calculate Theme Park Wait Time Inflation | WaitTimeTruth.com</title>
+<meta name="description" content="How WaitTimeTruth calculates Inflation Factors for theme park wait times. Data sources, classification thresholds, limitations, and how posted vs actual wait time comparisons work. Powered by Queue-Times.com API.">
+<meta name="keywords" content="wait time methodology, inflation factor calculation, posted vs actual wait time, how are wait times measured, theme park queue time accuracy, wait time data sources">
+<link rel="canonical" href="https://waittimetruth.com/methodology">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<meta property="og:title" content="How We Calculate Wait Time Inflation">
+<meta property="og:description" content="The methodology behind WaitTimeTruth's Inflation Factor — data sources, thresholds, and limitations explained.">
+<meta property="og:url" content="https://waittimetruth.com/methodology">
+<meta property="og:image" content="https://waittimetruth.com/og-home.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://waittimetruth.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Methodology", "item": "https://waittimetruth.com/methodology" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "How WaitTimeTruth Calculates Theme Park Wait Time Inflation",
+  "description": "Technical methodology for comparing posted theme park wait times against actual guest-reported waits to produce Inflation Factors.",
+  "author": { "@type": "Organization", "name": "WaitTimeTruth", "url": "https://waittimetruth.com" },
+  "publisher": { "@type": "Organization", "name": "Amusement Standards LLC", "url": "https://amusementstandards.com" },
+  "datePublished": "2026-03-21",
+  "dateModified": "2026-03-21",
+  "url": "https://waittimetruth.com/methodology"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--black:#0a0a0a;--dark:#111;--card:#191919;--border:#222;--border2:#2a2a2a;--muted:#555;--dim:#777;--text:#e8e8e8;--white:#fff;--red:#ff3b30;--red-dim:#7a1a15;--green:#22d87c;--amber:#f5a623;--fd:'Bebas Neue',sans-serif;--fm:'DM Mono',monospace;--fb:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.7;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+a{color:inherit;text-decoration:none;}
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;}
+.nav-logo{font-family:var(--fd);font-size:22px;color:var(--white);}
+.nav-logo span{color:var(--red);}
+.nav-links{display:flex;gap:16px;align-items:center;}
+.nav-links a{font-family:var(--fm);font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.15s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{font-family:var(--fd);font-size:16px;background:var(--red);color:var(--white);padding:7px 18px;border:none;cursor:pointer;letter-spacing:0.04em;transition:background 0.15s;}
+.nav-cta:hover{background:#e02d22;}
+
+main{max-width:720px;margin:0 auto;padding:64px 24px 80px;position:relative;z-index:1;}
+h1{font-family:var(--fd);font-size:clamp(48px,8vw,72px);color:var(--white);line-height:0.95;margin-bottom:8px;letter-spacing:0.02em;}
+h1 em{font-style:normal;color:var(--red);}
+.page-eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+.page-eyebrow::before{content:'';height:1px;width:24px;background:var(--red-dim);}
+.updated{font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:0.06em;margin-bottom:40px;}
+h2{font-family:var(--fd);font-size:32px;color:var(--white);margin:48px 0 12px;letter-spacing:0.02em;}
+h3{font-family:var(--fb);font-size:16px;font-weight:700;color:var(--white);margin:28px 0 8px;}
+p{color:var(--dim);margin-bottom:16px;line-height:1.7;}
+strong{color:var(--text);}
+.link{color:var(--red);text-decoration:underline;text-decoration-color:rgba(255,59,48,0.3);transition:text-decoration-color 0.15s;}
+.link:hover{text-decoration-color:var(--red);}
+
+.formula-block{background:var(--dark);border:1px solid var(--border2);padding:28px 24px;margin:24px 0;text-align:center;}
+.formula{font-family:var(--fd);font-size:clamp(28px,5vw,44px);color:var(--white);letter-spacing:0.03em;margin-bottom:8px;}
+.formula span{color:var(--red);}
+.formula-sub{font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:0.08em;}
+
+.thresh-table{width:100%;border-collapse:collapse;margin:24px 0;}
+.thresh-table th{font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);background:var(--dark);}
+.thresh-table td{font-family:var(--fm);font-size:13px;padding:12px;border-bottom:1px solid var(--border);color:var(--dim);}
+.thresh-table tr:nth-child(even) td{background:var(--card);}
+.t-red{color:var(--red);font-weight:500;}
+.t-amber{color:var(--amber);font-weight:500;}
+.t-green{color:var(--green);font-weight:500;}
+
+.callout{background:var(--card);border-left:3px solid var(--amber);padding:16px 20px;margin:24px 0;font-size:14px;color:var(--dim);line-height:1.7;}
+.callout strong{color:var(--amber);}
+
+.callout-red{border-left-color:var(--red);}
+.callout-red strong{color:var(--red);}
+
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.06em;line-height:2.2;position:relative;z-index:1;}
+footer a{color:var(--muted);transition:color 0.15s;}
+footer a:hover{color:var(--dim);}
+</style>
+</head>
+<body>
+<nav aria-label="Main navigation">
+  <a href="/" class="nav-logo">WaitTime<span>Truth</span></a>
+  <div class="nav-links">
+    <a href="/">Rankings</a>
+    <a href="/about">About</a>
+    <a href="/report" class="nav-cta">Report Your Wait</a>
+  </div>
+</nav>
+
+<main>
+  <article>
+    <div class="page-eyebrow">Methodology</div>
+    <h1>HOW WE CALCULATE<br>WAIT TIME <em>INFLATION</em></h1>
+    <p class="updated">Last updated: <time datetime="2026-03-21">March 21, 2026</time></p>
+
+    <p>WaitTimeTruth compares two numbers: the wait time a theme park posts on its signs and apps, and the wait time a guest actually experiences in line. The ratio of those two numbers is the <strong>Inflation Factor</strong> — the core metric behind everything on this site.</p>
+
+    <h2>THE FORMULA</h2>
+
+    <div class="formula-block">
+      <div class="formula"><span>INFLATION FACTOR</span> = POSTED ÷ ACTUAL</div>
+      <div class="formula-sub">A factor of 1.0× means the sign was perfectly accurate</div>
+    </div>
+
+    <p>If a ride posts a 90-minute wait and you actually wait 60 minutes, the Inflation Factor is <strong>90 ÷ 60 = 1.50×</strong> — the park overstated the wait by 50%. If you wait exactly 90 minutes, the factor is 1.0×. If you wait 120 minutes when the sign said 90, the factor is 0.75× — the park understated the wait.</p>
+
+    <h2>CLASSIFICATION THRESHOLDS</h2>
+
+    <p>We classify every Inflation Factor into one of four categories based on how far the posted time deviated from reality:</p>
+
+    <table class="thresh-table">
+      <thead>
+        <tr><th>Inflation Factor</th><th>Classification</th><th>What It Means</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="t-red">≥ 1.50×</td><td class="t-red">Significant Inflation</td><td>Posted time was 50%+ higher than actual. The sign substantially overstated the wait.</td></tr>
+        <tr><td class="t-amber">1.15× – 1.49×</td><td class="t-amber">Moderate Inflation</td><td>Posted time was 15–49% higher than actual. Noticeable overstatement.</td></tr>
+        <tr><td class="t-green">0.85× – 1.14×</td><td class="t-green">Accurate</td><td>Posted time was within 15% of actual. Reasonably close.</td></tr>
+        <tr><td class="t-red">< 0.85×</td><td class="t-red">Understated</td><td>You waited longer than the sign said. The park underestimated the queue.</td></tr>
+      </tbody>
+    </table>
+
+    <p>The 1.15× threshold for "Moderate Inflation" allows for the inherent imprecision of wait time estimation. Wait times are dynamic — guests enter and leave queues constantly, ride capacity fluctuates with loading efficiency, and weather or ride stoppages create unpredictable changes. A small margin of error is expected. Our thresholds are designed to flag patterns, not one-off discrepancies.</p>
+
+    <h2>DATA SOURCE: POSTED WAIT TIMES</h2>
+
+    <p><strong>Posted wait times</strong> are sourced from the <a href="https://queue-times.com/en-US/pages/api" target="_blank" rel="noopener" class="link">Queue-Times.com Real Time API</a>. This API pulls wait time data directly from parks' official systems — the same data that populates the My Disney Experience app, the Universal Orlando app, and the Six Flags app. The data updates every 5 minutes.</p>
+
+    <p>Queue-Times covers 80+ parks worldwide, including all four Walt Disney World parks, Disneyland Resort, all three Universal Orlando parks (including Epic Universe), Six Flags parks, Cedar Fair parks, SeaWorld parks, Busch Gardens, Dollywood, Hersheypark, and many more.</p>
+
+    <p>When a guest submits a report on WaitTimeTruth, we snapshot the posted wait time for their selected ride at the moment they indicate they entered the queue. This snapshot becomes the "posted" value in the Inflation Factor calculation.</p>
+
+    <div class="callout">
+      <strong>Attribution:</strong> All posted wait time data is provided by Queue-Times.com. We display "Powered by Queue-Times.com" throughout the site and on every receipt as required by their API terms.
+    </div>
+
+    <h2>DATA SOURCE: ACTUAL WAIT TIMES</h2>
+
+    <p><strong>Actual wait times</strong> are crowdsourced from two inputs:</p>
+
+    <h3>1. Manual reports (waittimetruth.com/report)</h3>
+    <p>Guests visit the <a href="/report" class="link">report page</a>, select their park and ride, and enter the time they actually waited. The posted wait is auto-populated from the Queue-Times API if the ride is currently operating. The guest can also manually enter the posted time they saw on the sign.</p>
+
+    <h3>2. Apple Watch app (AmusementRating)</h3>
+    <p>The <a href="https://amusementrating.org" target="_blank" rel="noopener" class="link">AmusementRating</a> Apple Watch app includes a Track mode that times the user's queue wait from wrist. The user long-presses "Ride It" when entering the queue, and taps "Done" when they board. The app snapshots the posted wait from the Queue-Times API at queue entry and calculates the Inflation Factor automatically.</p>
+
+    <div class="callout callout-red">
+      <strong>Important limitation:</strong> All actual wait time data is self-reported. We do not independently verify any guest-submitted wait times. Users may misremember their wait, round their estimate, or misidentify their ride. This is an inherent limitation of crowdsourced data. We mitigate this by aggregating across many reports — individual inaccuracies tend to average out over hundreds of data points per park.
+    </div>
+
+    <h2>AGGREGATION & PARK SCORES</h2>
+
+    <p>The Inflation Factor displayed on our <a href="/#leaderboard" class="link">Park Inflation Index</a> is a weighted average of all individual ride-level Inflation Factors reported at that park. We calculate it as:</p>
+
+    <div class="formula-block">
+      <div class="formula" style="font-size:clamp(20px,3.5vw,32px);">PARK FACTOR = SUM(ALL POSTED) ÷ SUM(ALL ACTUAL)</div>
+      <div class="formula-sub">Weighted by volume — rides with more reports have more influence</div>
+    </div>
+
+    <p>This approach — summing all posted minutes divided by summing all actual minutes — naturally weights rides with more reports more heavily. A ride with 200 reports influences the park score more than a ride with 10 reports. This is intentional: higher-volume rides are the ones guests care about most, and they produce more statistically reliable inflation estimates.</p>
+
+    <h3>Minimum report threshold</h3>
+    <p>A park is not included in the public leaderboard until it has received at least <strong>50 guest reports</strong> across at least <strong>5 distinct rides</strong>. This prevents a single ride or a small handful of reports from producing a misleading park-wide score.</p>
+
+    <h2>WHAT THIS IS NOT</h2>
+
+    <p>WaitTimeTruth is a data comparison tool. It is <strong>not</strong>:</p>
+
+    <p><strong>An accusation of fraud.</strong> Inflation Factors are calculated ratios. The term "inflation" refers to the mathematical relationship between posted and actual times. We do not claim that any park intentionally deceives guests. Parks may overstate times for legitimate operational reasons — guest satisfaction management, queue clearing at close, capacity estimation difficulty, or equipment limitations.</p>
+
+    <p><strong>A guaranteed prediction.</strong> Our data is historical. The Inflation Factor for a ride today may be different tomorrow. Wait times are influenced by day of week, season, weather, special events, ride capacity changes, and many other variables we cannot control for.</p>
+
+    <p><strong>A recommendation for or against any product.</strong> We do not advise guests to buy or not buy Lightning Lane, Express Pass, or any skip-the-line product. We provide data so guests can make their own informed decisions.</p>
+
+    <h2>UPDATES & VERSIONING</h2>
+
+    <p>This methodology document reflects the current state of our data pipeline. We will update it as our methods evolve — particularly as the Apple Watch app introduces automated queue detection (GPS geofencing, accelerometer pattern recognition) in future releases. All changes will be documented here with dates.</p>
+
+    <p>Questions about this methodology: <strong>methodology@waittimetruth.com</strong></p>
+
+  </article>
+</main>
+
+<footer>
+  <nav aria-label="Footer navigation">
+    <a href="/">WaitTimeTruth.com</a> · <a href="/report">Report</a> · <a href="/about">About</a> · <a href="/media">Media</a> · <a href="/#leaderboard">Rankings</a> ·
+    <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating.org</a> · <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+  </nav>
+  <p>© 2026 Amusement Standards LLC · Asbury Park, NJ · A <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> Project</p>
+</footer>
+</body>
+</html>
