@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Methodology — How We Calculate Theme Park Wait Time Inflation | WaitTimeTruth.com</title>
-<meta name="description" content="How WaitTimeTruth calculates Inflation Factors for theme park wait times. Data sources, classification thresholds, limitations, and how posted vs actual wait time comparisons work. Powered by Queue-Times.com API.">
-<meta name="keywords" content="wait time methodology, inflation factor calculation, posted vs actual wait time, how are wait times measured, theme park queue time accuracy, wait time data sources">
+<title>Methodology — How We Measure Theme Park Wait Time Accuracy | WaitTimeTruth.com</title>
+<meta name="description" content="How WaitTimeTruth measures theme park wait time accuracy. Data sources, classification thresholds, limitations, and how posted vs actual wait time comparisons work. Powered by Queue-Times.com API.">
+<meta name="keywords" content="wait time methodology, accuracy ratio calculation, posted vs actual wait time, how are wait times measured, theme park queue time accuracy, wait time data sources">
 <link rel="canonical" href="https://waittimetruth.com/methodology">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
-<meta property="og:title" content="How We Calculate Wait Time Inflation">
-<meta property="og:description" content="The methodology behind WaitTimeTruth's Inflation Factor — data sources, thresholds, and limitations explained.">
+<meta property="og:title" content="How We Measure Wait Time Accuracy">
+<meta property="og:description" content="The methodology behind WaitTimeTruth's posted-to-actual ratio — data sources, thresholds, and limitations explained.">
 <meta property="og:url" content="https://waittimetruth.com/methodology">
 <meta property="og:image" content="https://waittimetruth.com/og-home.png">
 
@@ -28,8 +28,8 @@
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "How WaitTimeTruth Calculates Theme Park Wait Time Inflation",
-  "description": "Technical methodology for comparing posted theme park wait times against actual guest-reported waits to produce Inflation Factors.",
+  "headline": "How WaitTimeTruth Measures Theme Park Wait Time Accuracy",
+  "description": "Technical methodology for comparing posted theme park wait times against actual guest-reported waits to produce accuracy ratios.",
   "author": { "@type": "Organization", "name": "WaitTimeTruth", "url": "https://waittimetruth.com" },
   "publisher": { "@type": "Organization", "name": "Amusement Standards LLC", "url": "https://amusementstandards.com" },
   "datePublished": "2026-03-21",
@@ -107,19 +107,19 @@ footer a:hover{color:var(--dim);}
 <main>
   <article>
     <div class="page-eyebrow">Methodology</div>
-    <h1>HOW WE CALCULATE<br>WAIT TIME <em>INFLATION</em></h1>
+    <h1>HOW WE MEASURE<br>WAIT TIME <em>ACCURACY</em></h1>
     <p class="updated">Last updated: <time datetime="2026-03-21">March 21, 2026</time></p>
 
-    <p>WaitTimeTruth compares two numbers: the wait time a theme park posts on its signs and apps, and the wait time a guest actually experiences in line. The ratio of those two numbers is the <strong>Inflation Factor</strong> — the core metric behind everything on this site.</p>
+    <p>WaitTimeTruth compares two numbers: the wait time a theme park posts on its signs and apps, and the wait time a guest actually experiences in line. The ratio of those two numbers is the <strong>posted-to-actual ratio</strong> — the core metric behind everything on this site.</p>
 
     <h2>THE FORMULA</h2>
 
     <div class="formula-block">
-      <div class="formula"><span>INFLATION FACTOR</span> = POSTED ÷ ACTUAL</div>
+      <div class="formula"><span>POSTED-TO-ACTUAL RATIO</span> = POSTED ÷ ACTUAL</div>
       <div class="formula-sub">A factor of 1.0× means the sign was perfectly accurate</div>
     </div>
 
-    <p>If a ride posts a 90-minute wait and you actually wait 60 minutes, the Inflation Factor is <strong>90 ÷ 60 = 1.50×</strong> — the park overstated the wait by 50%. If you wait exactly 90 minutes, the factor is 1.0×. If you wait 120 minutes when the sign said 90, the factor is 0.75× — the park understated the wait.</p>
+    <p>If a ride posts a 90-minute wait and you actually wait 60 minutes, the ratio is <strong>90 ÷ 60 = 1.50×</strong> — the posted time was 50% higher than reality. If you wait exactly 90 minutes, the factor is 1.0×. If you wait 120 minutes when the sign said 90, the factor is 0.75× — the posted time was lower than reality.</p>
 
     <h2>CLASSIFICATION THRESHOLDS</h2>
 
@@ -127,17 +127,17 @@ footer a:hover{color:var(--dim);}
 
     <table class="thresh-table">
       <thead>
-        <tr><th>Inflation Factor</th><th>Classification</th><th>What It Means</th></tr>
+        <tr><th>Ratio</th><th>Classification</th><th>What It Means</th></tr>
       </thead>
       <tbody>
-        <tr><td class="t-red">≥ 1.50×</td><td class="t-red">Significant Inflation</td><td>Posted time was 50%+ higher than actual. The sign substantially overstated the wait.</td></tr>
-        <tr><td class="t-amber">1.15× – 1.49×</td><td class="t-amber">Moderate Inflation</td><td>Posted time was 15–49% higher than actual. Noticeable overstatement.</td></tr>
+        <tr><td class="t-red">≥ 1.50×</td><td class="t-red">Significantly Off</td><td>Posted time was 50%+ higher than actual. The sign substantially higher than the actual wait.</td></tr>
+        <tr><td class="t-amber">1.15× – 1.49×</td><td class="t-amber">Moderately Off</td><td>Posted time was 15–49% higher than actual. Noticeable gap between posted and actual.</td></tr>
         <tr><td class="t-green">0.85× – 1.14×</td><td class="t-green">Accurate</td><td>Posted time was within 15% of actual. Reasonably close.</td></tr>
         <tr><td class="t-red">< 0.85×</td><td class="t-red">Understated</td><td>You waited longer than the sign said. The park underestimated the queue.</td></tr>
       </tbody>
     </table>
 
-    <p>The 1.15× threshold for "Moderate Inflation" allows for the inherent imprecision of wait time estimation. Wait times are dynamic — guests enter and leave queues constantly, ride capacity fluctuates with loading efficiency, and weather or ride stoppages create unpredictable changes. A small margin of error is expected. Our thresholds are designed to flag patterns, not one-off discrepancies.</p>
+    <p>The 1.15× threshold for "Moderately Off" allows for the inherent imprecision of wait time estimation. Wait times are dynamic — guests enter and leave queues constantly, ride capacity fluctuates with loading efficiency, and weather or ride stoppages create unpredictable changes. A small margin of error is expected. Our thresholds are designed to flag patterns, not one-off discrepancies.</p>
 
     <h2>DATA SOURCE: POSTED WAIT TIMES</h2>
 
@@ -145,7 +145,7 @@ footer a:hover{color:var(--dim);}
 
     <p>Queue-Times covers 80+ parks worldwide, including all four Walt Disney World parks, Disneyland Resort, all three Universal Orlando parks (including Epic Universe), Six Flags parks, Cedar Fair parks, SeaWorld parks, Busch Gardens, Dollywood, Hersheypark, and many more.</p>
 
-    <p>When a guest submits a report on WaitTimeTruth, we snapshot the posted wait time for their selected ride at the moment they indicate they entered the queue. This snapshot becomes the "posted" value in the Inflation Factor calculation.</p>
+    <p>When a guest submits a report on WaitTimeTruth, we snapshot the posted wait time for their selected ride at the moment they indicate they entered the queue. This snapshot becomes the "posted" value in the ratio calculation.</p>
 
     <div class="callout">
       <strong>Attribution:</strong> All posted wait time data is provided by Queue-Times.com. We display "Powered by Queue-Times.com" throughout the site and on every receipt as required by their API terms.
@@ -159,7 +159,7 @@ footer a:hover{color:var(--dim);}
     <p>Guests visit the <a href="/report" class="link">report page</a>, select their park and ride, and enter the time they actually waited. The posted wait is auto-populated from the Queue-Times API if the ride is currently operating. The guest can also manually enter the posted time they saw on the sign.</p>
 
     <h3>2. Apple Watch app (AmusementRating)</h3>
-    <p>The <a href="https://amusementrating.org" target="_blank" rel="noopener" class="link">AmusementRating</a> Apple Watch app includes a Track mode that times the user's queue wait from wrist. The user long-presses "Ride It" when entering the queue, and taps "Done" when they board. The app snapshots the posted wait from the Queue-Times API at queue entry and calculates the Inflation Factor automatically.</p>
+    <p>The <a href="https://amusementrating.org" target="_blank" rel="noopener" class="link">AmusementRating</a> Apple Watch app includes a Track mode that times the user's queue wait from wrist. The user long-presses "Ride It" when entering the queue, and taps "Done" when they board. The app snapshots the posted wait from the Queue-Times API at queue entry and calculates the ratio automatically.</p>
 
     <div class="callout callout-red">
       <strong>Important limitation:</strong> All actual wait time data is self-reported. We do not independently verify any guest-submitted wait times. Users may misremember their wait, round their estimate, or misidentify their ride. This is an inherent limitation of crowdsourced data. We mitigate this by aggregating across many reports — individual inaccuracies tend to average out over hundreds of data points per park.
@@ -167,14 +167,14 @@ footer a:hover{color:var(--dim);}
 
     <h2>AGGREGATION & PARK SCORES</h2>
 
-    <p>The Inflation Factor displayed on our <a href="/#leaderboard" class="link">Park Inflation Index</a> is a weighted average of all individual ride-level Inflation Factors reported at that park. We calculate it as:</p>
+    <p>The ratio displayed on our <a href="/#leaderboard" class="link">Park Accuracy Index</a> is a weighted average of all individual ride-level ratios reported at that park. We calculate it as:</p>
 
     <div class="formula-block">
       <div class="formula" style="font-size:clamp(20px,3.5vw,32px);">PARK FACTOR = SUM(ALL POSTED) ÷ SUM(ALL ACTUAL)</div>
       <div class="formula-sub">Weighted by volume — rides with more reports have more influence</div>
     </div>
 
-    <p>This approach — summing all posted minutes divided by summing all actual minutes — naturally weights rides with more reports more heavily. A ride with 200 reports influences the park score more than a ride with 10 reports. This is intentional: higher-volume rides are the ones guests care about most, and they produce more statistically reliable inflation estimates.</p>
+    <p>This approach — summing all posted minutes divided by summing all actual minutes — naturally weights rides with more reports more heavily. A ride with 200 reports influences the park score more than a ride with 10 reports. This is intentional: higher-volume rides are the ones guests care about most, and they produce more statistically reliable accuracy estimates.</p>
 
     <h3>Minimum report threshold</h3>
     <p>A park is not included in the public leaderboard until it has received at least <strong>50 guest reports</strong> across at least <strong>5 distinct rides</strong>. This prevents a single ride or a small handful of reports from producing a misleading park-wide score.</p>
@@ -183,9 +183,9 @@ footer a:hover{color:var(--dim);}
 
     <p>WaitTimeTruth is a data comparison tool. It is <strong>not</strong>:</p>
 
-    <p><strong>An accusation of fraud.</strong> Inflation Factors are calculated ratios. The term "inflation" refers to the mathematical relationship between posted and actual times. We do not claim that any park intentionally deceives guests. Parks may overstate times for legitimate operational reasons — guest satisfaction management, queue clearing at close, capacity estimation difficulty, or equipment limitations.</p>
+    <p><strong>An assertion about intent.</strong> Posted-to-actual ratios are mathematical comparisons. A ratio above 1.0× means the posted time was higher than the reported actual wait. There are many legitimate reasons this can occur: guest satisfaction management (guests prefer waiting less than expected), queue management at park closing, capacity estimation challenges, manual reporting limitations, and ride downtime buffers. We make no claims about any park's motivations.</p>
 
-    <p><strong>A guaranteed prediction.</strong> Our data is historical. The Inflation Factor for a ride today may be different tomorrow. Wait times are influenced by day of week, season, weather, special events, ride capacity changes, and many other variables we cannot control for.</p>
+    <p><strong>A guaranteed prediction.</strong> Our data is historical. The ratio for a ride today may be different tomorrow. Wait times are influenced by day of week, season, weather, special events, ride capacity changes, and many other variables we cannot control for.</p>
 
     <p><strong>A recommendation for or against any product.</strong> We do not advise guests to buy or not buy Lightning Lane, Express Pass, or any skip-the-line product. We provide data so guests can make their own informed decisions.</p>
 
@@ -193,7 +193,7 @@ footer a:hover{color:var(--dim);}
 
     <p>This methodology document reflects the current state of our data pipeline. We will update it as our methods evolve — particularly as the Apple Watch app introduces automated queue detection (GPS geofencing, accelerometer pattern recognition) in future releases. All changes will be documented here with dates.</p>
 
-    <p>Questions about this methodology: <strong>methodology@waittimetruth.com</strong></p>
+    <p>Questions about this methodology: <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="503d3524383f343f3c3f3729102731392424393d3524222524387e333f3d">[email&#160;protected]</a></strong></p>
 
   </article>
 </main>
@@ -203,7 +203,4 @@ footer a:hover{color:var(--dim);}
     <a href="/">WaitTimeTruth.com</a> · <a href="/report">Report</a> · <a href="/about">About</a> · <a href="/media">Media</a> · <a href="/#leaderboard">Rankings</a> ·
     <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating.org</a> · <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
   </nav>
-  <p>© 2026 Amusement Standards LLC · Asbury Park, NJ · A <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> Project</p>
-</footer>
-</body>
-</html>
+  <p>© 2026 Amusement Standards LLC · Asbury Park,
