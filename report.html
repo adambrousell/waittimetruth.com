@@ -492,7 +492,7 @@ document.getElementById('parkSelect').addEventListener('change', async function(
   try {
     const [ridesRes, qtRes] = await Promise.allSettled([
       fetch(RECEIPT_WORKER + '/rides?park=' + encodeURIComponent(state.parkName)),
-      state.qtId ? fetch('https://queue-times.com/parks/' + state.qtId + '/queue_times.json') : Promise.reject('no qtId')
+      state.qtId ? fetch(RECEIPT_WORKER + '/qtx?park=' + state.qtId) : Promise.reject('no qtId')
     ]);
 
     // Parse Airtable rides
