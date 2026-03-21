@@ -705,11 +705,40 @@ async function shareNative(){
 }
 
 // ── SUBMIT (to receipt worker — gets permalink back) ──
+// Passively captures GPS if available — never blocks submission
 async function submitReport(park,ride,posted,actual,factor){
+  // Try to get GPS silently — 5 second timeout, no blocking
+  let userLat = null, userLng = null;
+  try {
+    const pos = await new Promise((resolve, reject) => {
+      if (!navigator.geolocation) return reject('no-geo');
+      navigator.geolocation.getCurrentPosition(resolve, reject, {
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 60000
+      });
+    });
+    userLat = pos.coords.latitude;
+    userLng = pos.coords.longitude;
+  } catch(e) {
+    // Permission denied or timeout — that's fine, submit without GPS
+  }
+
   try{
+    const payload = {
+      park, ride,
+      posted: posted ? Number(posted) : null,
+      actual: Number(actual),
+      source: 'report-page'
+    };
+    if (userLat !== null && userLng !== null) {
+      payload.userLat = userLat;
+      payload.userLng = userLng;
+    }
+
     const res = await fetch(RECEIPT_WORKER + '/submit',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({park,ride,posted:posted?Number(posted):null,actual:Number(actual),source:'report-page'}),
+      body:JSON.stringify(payload),
     });
     const data = await res.json();
     if(data.success && data.receiptUrl){
