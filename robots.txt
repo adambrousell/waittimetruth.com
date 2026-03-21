@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://waittimetruth.com/sitemap.xml
+
+# WaitTimeTruth.com — Theme Park Wait Time Inflation Tracker
+# A RatingValue.org Project · Amusement Standards LLC
