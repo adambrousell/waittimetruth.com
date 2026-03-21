@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page Not Found — WaitTimeTruth.com</title>
 <meta name="robots" content="noindex">
+<script>
+// Receipt permalink redirect — /r/XXXXXX → worker
+var p = window.location.pathname;
+if (p.match(/^\/r\/[A-Za-z0-9]{5,8}$/)) {
+  window.location.replace('https://wtt-receipt.amusementstandards.workers.dev' + p);
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{--black:#0a0a0a;--dark:#111;--border:#222;--muted:#555;--dim:#777;--text:#e8e8e8;--white:#fff;--red:#ff3b30;--green:#22d87c;--fd:'Bebas Neue',sans-serif;--fm:'DM Mono',monospace;--fb:'DM Sans',sans-serif;}
