@@ -6,27 +6,27 @@
 
 <!-- ══════ PRIMARY SEO ══════ -->
 <title>Report Your Wait Time — Get a Shareable Receipt | WaitTimeTruth.com</title>
-<meta name="description" content="The sign said 60 minutes. You waited 35. Report your actual theme park wait time, compare it to the posted time, and get a shareable receipt with your Inflation Factor. Disney, Universal, Six Flags, Cedar Point and more.">
-<meta name="keywords" content="report wait time, theme park wait time report, actual wait time vs posted, wait time receipt, Disney wait time tracker, Universal wait time accuracy, ride wait time report, inflation factor calculator">
+<meta name="description" content="The sign said 60 minutes. You waited 35. Report your actual theme park wait time, compare it to the posted time, and get a shareable accuracy receipt. Disney, Universal, Six Flags, Cedar Point and more.">
+<meta name="keywords" content="report wait time, theme park wait time report, actual wait time vs posted, wait time receipt, Disney wait time tracker, Universal wait time accuracy, ride wait time report, accuracy ratio calculator">
 <link rel="canonical" href="https://waittimetruth.com/report">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="icon" type="image/png" href="/favicon.png">
 
 <!-- ══════ OPEN GRAPH ══════ -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Did the Park Lie About Wait Times? Report Yours.">
-<meta property="og:description" content="Report your actual wait. Get a shareable receipt. Parks inflate posted times to sell Express Pass upgrades. We're tracking every park.">
+<meta property="og:title" content="Did the Park Get It Wrong? Report Your Wait.">
+<meta property="og:description" content="Report your actual wait time and compare it to what the sign said. See how accurate the posted time really was. We're tracking every park.">
 <meta property="og:url" content="https://waittimetruth.com/report">
 <meta property="og:image" content="https://waittimetruth.com/og-report.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="WaitTimeTruth — Report your actual wait time and get a shareable inflation receipt">
+<meta property="og:image:alt" content="WaitTimeTruth — Report your actual wait time and get a shareable accuracy receipt">
 <meta property="og:site_name" content="WaitTimeTruth.com">
 
 <!-- ══════ TWITTER ══════ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Did the Park Lie? Report Your Wait Time.">
-<meta name="twitter:description" content="Report your actual wait. Get a receipt with your Inflation Factor. We're tracking every park.">
+<meta name="twitter:title" content="Did the Park Get It Wrong? Report Yours.">
+<meta name="twitter:description" content="Report your actual wait. Get a receipt comparing posted vs. actual. We're tracking accuracy at 20+ parks.">
 <meta name="twitter:image" content="https://waittimetruth.com/og-report.png">
 <meta name="twitter:image:alt" content="WaitTimeTruth wait time report tool">
 
@@ -49,7 +49,7 @@
   "@type": "WebApplication",
   "name": "WaitTimeTruth Report Tool",
   "url": "https://waittimetruth.com/report",
-  "description": "Report your actual theme park wait time, compare it against the park's posted time, and generate a shareable receipt with your Inflation Factor. Covers Disney, Universal, Six Flags, Cedar Point, Dollywood, and 20+ major parks.",
+  "description": "Report your actual theme park wait time, compare it against the park's posted time, and generate a shareable receipt with your posted-to-actual ratio. Covers Disney, Universal, Six Flags, Cedar Point, Dollywood, and 20+ major parks.",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "Web",
   "offers": {
@@ -169,7 +169,7 @@ select:disabled{opacity:0.4;cursor:not-allowed;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
 .verdict-banner{padding:20px 24px;border-radius:4px 4px 0 0;text-align:center;font-family:var(--fd);font-size:32px;letter-spacing:0.04em;}
-.verdict-banner.lied{background:var(--red);color:var(--white);}
+.verdict-banner.off{background:var(--red);color:var(--white);}
 .verdict-banner.honest{background:var(--green);color:var(--black);}
 .verdict-banner.close{background:var(--amber);color:var(--black);}
 
@@ -245,25 +245,25 @@ footer a:hover{color:var(--dim);}
   <!-- ══════ HERO ══════ -->
   <header class="hero">
     <div class="hero-eyebrow">Wait Time Truth Project</div>
-    <h1>Did the park <em>lie to you?</em></h1>
-    <p class="hero-sub">Parks inflate posted wait times to sell <strong>Lightning Lane</strong>, <strong>Express Pass</strong>, and <strong>Virtual Queue</strong> upgrades. Report your actual wait. Get a shareable receipt. We're tracking every park.</p>
+    <h1>Did the park <em>get it wrong?</em></h1>
+    <p class="hero-sub">Posted wait times don't always match reality. Report your actual wait at <strong>Disney</strong>, <strong>Universal</strong>, <strong>Six Flags</strong>, <strong>Cedar Point</strong>, and 20+ parks. Get a shareable receipt showing how accurate the sign really was.</p>
   </header>
 
   <!-- ══════ TICKER ══════ -->
   <div class="ticker-wrap" aria-hidden="true">
     <div class="ticker-track" id="tickerTrack">
-      <div class="ticker-item">🎢 <span class="label">Kingda Ka · SFGAdv</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× INFLATION</span></div>
-      <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× INFLATION</span></div>
-      <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adv</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Kingda Ka · SFGAdv</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× OFF</span></div>
+      <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× OFF</span></div>
+      <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adv</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× OFF</span></div>
       <div class="ticker-item">✅ <span class="label">Steel Vengeance · Cedar Point</span> — Posted <strong>55m</strong> · Actual <span class="gap-green">~52m</span> · <span class="gap-green">ACCURATE</span></div>
-      <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× INFLATION</span></div>
-      <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">CLOSE ENOUGH</span></div>
-      <div class="ticker-item">🎢 <span class="label">Kingda Ka · SFGAdv</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× INFLATION</span></div>
-      <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× INFLATION</span></div>
-      <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adv</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× OFF</span></div>
+      <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">ACCURATE</span></div>
+      <div class="ticker-item">🎢 <span class="label">Kingda Ka · SFGAdv</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× OFF</span></div>
+      <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× OFF</span></div>
+      <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adv</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× OFF</span></div>
       <div class="ticker-item">✅ <span class="label">Steel Vengeance · Cedar Point</span> — Posted <strong>55m</strong> · Actual <span class="gap-green">~52m</span> · <span class="gap-green">ACCURATE</span></div>
-      <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× INFLATION</span></div>
-      <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">CLOSE ENOUGH</span></div>
+      <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× OFF</span></div>
+      <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">ACCURATE</span></div>
     </div>
   </div>
 
@@ -378,7 +378,7 @@ footer a:hover{color:var(--dim);}
       <div class="receipt-row"><span class="receipt-label">Park</span><span class="receipt-value" id="rcPark" style="font-size:16px;color:var(--dim)">—</span></div>
       <div class="receipt-row"><span class="receipt-label">Posted Wait</span><span class="receipt-value amber" id="rcPosted">— min</span></div>
       <div class="receipt-row"><span class="receipt-label">Your Actual Wait</span><span class="receipt-value" id="rcActual">— min</span></div>
-      <div class="receipt-row"><span class="receipt-label">Inflation Factor</span><span class="receipt-value" id="rcFactor">—</span></div>
+      <div class="receipt-row"><span class="receipt-label">Posted÷Actual Ratio</span><span class="receipt-value" id="rcFactor">—</span></div>
       <div class="receipt-row"><span class="receipt-label">Verdict</span><span class="receipt-value" id="rcVerdict">—</span></div>
       <div class="receipt-meta" id="rcMeta">
         WAITTIMETRUTH.COM · WAIT TIME TRUTH PROJECT<br>
@@ -386,11 +386,13 @@ footer a:hover{color:var(--dim);}
         Report #<span id="rcNum"></span> · <a href="https://amusementrating.org" target="_blank" rel="noopener" style="color:var(--green)">amusementrating.org</a> for full ops audits<br>
         A <a href="https://ratingvalue.org" target="_blank" rel="noopener" style="color:var(--muted)">RatingValue.org</a> Project
       </div>
-      <div class="share-row">
+      <div class="share-row" style="grid-template-columns:1fr 1fr 1fr;">
         <button class="share-btn dl" onclick="downloadReceipt()">⬇ Save Image</button>
         <button class="share-btn" onclick="copyCaption()">📋 Copy Caption</button>
-        <a class="share-btn" id="tweetBtn" href="#" target="_blank" rel="noopener">𝕏 Tweet This</a>
+        <a class="share-btn" id="tweetBtn" href="#" target="_blank" rel="noopener">𝕏 Tweet</a>
+        <a class="share-btn" id="fbBtn" href="#" target="_blank" rel="noopener">f Facebook</a>
         <button class="share-btn" onclick="shareNative()">↗ Share</button>
+        <button class="share-btn" onclick="if(state.receiptUrl)navigator.clipboard.writeText(state.receiptUrl).then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='🔗 Copy Link',2000)});else{this.textContent='Generating...'}">🔗 Copy Link</button>
       </div>
       <button class="another-btn" onclick="resetForm()">← Report another ride</button>
     </div>
@@ -408,19 +410,19 @@ footer a:hover{color:var(--dim);}
   </section>
 
   <!-- ══════ SEO CONTENT (below fold, always visible) ══════ -->
-  <section class="seo-content" aria-label="About theme park wait time inflation">
-    <h2>HOW WAIT TIME INFLATION WORKS</h2>
-    <p>When you arrive at a theme park ride and see a sign that says "90 minutes," you expect to wait about 90 minutes. But <a href="/">crowdsourced data from thousands of guest reports</a> shows that posted wait times at major U.S. theme parks are routinely inflated — often by 30% to 80%.</p>
-    <p>The Inflation Factor is a simple ratio: <strong>Posted Wait ÷ Actual Wait</strong>. If the sign says 90 minutes and you wait 60, the Inflation Factor is 1.5× — the park overstated the wait by 50%. Our <a href="/#leaderboard">Park Inflation Index</a> ranks 20+ major parks by this metric, updated continuously.</p>
+  <section class="seo-content" aria-label="About theme park wait time accuracy">
+    <h2>HOW POSTED WAIT TIMES COMPARE TO REALITY</h2>
+    <p>When you arrive at a theme park ride and see a sign that says "90 minutes," you expect to wait about 90 minutes. But <a href="/">crowdsourced data from thousands of guest reports</a> shows that posted wait times at major U.S. theme parks often run significantly higher than the actual experience — sometimes by 30% to 80%.</p>
+    <p>The posted-to-actual ratio is a simple calculation: <strong>Posted Wait ÷ Actual Wait</strong>. If the sign says 90 minutes and you wait 60, the ratio is 1.5× — the posted time was 50% higher than reality. Our <a href="/#leaderboard">Park Accuracy Index</a> ranks 20+ major parks by this metric, updated continuously.</p>
 
-    <h3>Why do parks inflate wait times?</h3>
-    <p>Parks that sell skip-the-line products — <strong>Disney's Lightning Lane</strong> ($15–$35 per ride), <strong>Universal's Express Pass</strong> ($80–$300+ per day), and <strong>Virtual Queue</strong> reservations — have a direct financial incentive to overstate queue lengths. A guest who sees "90 minutes" is more likely to pay $25 for Lightning Lane than a guest who sees the actual 55-minute wait. Disney's own app includes a disclaimer that guests "should not rely on wait time estimates when making purchase decisions."</p>
+    <h3>Why are posted times often higher than actual waits?</h3>
+    <p>There are several documented reasons. Many parks rely on manual operator estimates rather than automated tracking. Disney Cast Members have explained that overestimating creates a "pleasant surprise" — guests who wait less than expected report higher satisfaction. Parks also overstate times near closing to manage end-of-night queue entry. These factors may correlate with the availability of paid skip-the-line products like <strong>Disney's Lightning Lane</strong> ($15–$35 per ride) and <strong>Universal's Express Pass</strong> ($80–$300+ per day), though the relationship is debated. Disney's own app includes a disclaimer noting that wait time estimates may not be fully accurate.</p>
 
-    <h3>Which parks are the worst offenders?</h3>
-    <p><a href="/parks/epic-universe">Universal's Epic Universe</a> currently leads our index with an average Inflation Factor of 1.79× — meaning posted times are nearly double actual waits. <a href="/parks/islands-of-adventure">Islands of Adventure</a> and <a href="/parks/universal-studios-florida">Universal Studios Florida</a> follow close behind. <a href="/parks/magic-kingdom">Magic Kingdom</a> and <a href="/parks/hollywood-studios">Hollywood Studios</a> show moderate inflation in the 1.4×–1.5× range. Parks like <a href="/parks/cedar-point">Cedar Point</a>, <a href="/parks/dollywood">Dollywood</a>, and <a href="/parks/hersheypark">Hersheypark</a> consistently show accurate posted times near 1.0×.</p>
+    <h3>Which parks have the biggest gaps?</h3>
+    <p><a href="/parks/epic-universe">Universal's Epic Universe</a> currently leads our index with an average ratio of 1.79× — meaning posted times are nearly double actual waits. <a href="/parks/islands-of-adventure">Islands of Adventure</a> and <a href="/parks/universal-studios-florida">Universal Studios Florida</a> follow close behind. <a href="/parks/magic-kingdom">Magic Kingdom</a> and <a href="/parks/hollywood-studios">Hollywood Studios</a> show moderate gaps in the 1.4×–1.5× range. Parks like <a href="/parks/cedar-point">Cedar Point</a>, <a href="/parks/dollywood">Dollywood</a>, and <a href="/parks/hersheypark">Hersheypark</a> consistently post accurate times near 1.0×.</p>
 
     <h3>How to report your wait time</h3>
-    <p>Use the form above to select your park and ride, enter the posted wait time and your actual wait, and generate a shareable receipt with your personal Inflation Factor. Posted wait times are pulled from the <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> API, which updates every 5 minutes from parks' official systems. No account is required. Every report contributes to the aggregate data on our <a href="/#leaderboard">Park Inflation Index</a>.</p>
+    <p>Use the form above to select your park and ride, enter the posted wait time and your actual wait, and generate a shareable receipt with your posted-to-actual ratio. Posted wait times are pulled from the <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> API, which updates every 5 minutes from parks' official systems. No account is required. Every report contributes to the aggregate data on our <a href="/#leaderboard">Park Accuracy Index</a>.</p>
 
     <h3>Track waits automatically with the Apple Watch app</h3>
     <p>The <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating</a> Apple Watch app lets you time your wait from your wrist, automatically compare it against the posted time, and generate a receipt without touching your phone. It also lets you log rides, build a lifetime coaster count, and audit ride operations with a 10-second 4-pillar scoring system. <a href="https://amusementrating.org" target="_blank" rel="noopener">Learn more →</a></p>
@@ -443,7 +445,7 @@ footer a:hover{color:var(--dim);}
     <a href="/terms">Terms</a>
   </nav>
   <p>© 2026 Amusement Standards LLC · Asbury Park, NJ · A <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> Project</p>
-  <p>Powered by <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> · Wait time data is crowdsourced and self-reported. Inflation factors are calculated ratios, not findings of intentional wrongdoing.</p>
+  <p>Powered by <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> · Wait time data is crowdsourced and self-reported. Posted-to-actual ratios are mathematical comparisons, not assertions about park intentions.</p>
 </footer>
 
 <!-- HIDDEN CANVAS -->
@@ -543,16 +545,16 @@ function buildReceipt(){
     // FIXED: handle case where actual > posted (longer than posted)
     if(actual > posted && (actual-posted) > 5){
       verdict='⚠️ LONGER THAN POSTED';
-      verdictClass='lied';
+      verdictClass='off';
       factor=(posted/actual).toFixed(2);
     } else if(diff > 8){
-      verdict='🚨 INFLATED — '+diff+' min overstated';
-      verdictClass='lied';
+      verdict='📊 SIGNIFICANTLY OFF — '+diff+' min gap';
+      verdictClass='off';
     } else if(diff < -5){
       verdict='⚠️ LONGER THAN POSTED';
-      verdictClass='lied';
+      verdictClass='off';
     } else {
-      verdict='✓ CLOSE ENOUGH';
+      verdict='✓ ACCURATE';
       verdictClass='close';
     }
   } else {
@@ -565,10 +567,10 @@ function buildReceipt(){
   document.getElementById('rcActual').textContent=actual+' min';
   document.getElementById('rcFactor').textContent=factor!==null&&factor!=='—'?factor+'×':'—';
 
-  const isInflated = posted && actual && diff > 8;
+  const isOff = posted && actual && diff > 8;
   const isLonger = posted && actual && actual > posted && (actual-posted) > 5;
-  document.getElementById('rcActual').className='receipt-value '+(isInflated?'red':isLonger?'red':'green');
-  document.getElementById('rcFactor').className='receipt-value '+(isInflated?'red':isLonger?'red':'green');
+  document.getElementById('rcActual').className='receipt-value '+(isOff?'red':isLonger?'red':'green');
+  document.getElementById('rcFactor').className='receipt-value '+(isOff?'red':isLonger?'red':'green');
   document.getElementById('rcVerdict').textContent=verdict;
 
   const now=new Date();
@@ -579,19 +581,19 @@ function buildReceipt(){
 
   const banner=document.getElementById('verdictBanner');
   banner.className='verdict-banner '+verdictClass;
-  if(isInflated) banner.textContent='THE SIGN LIED — '+diff+' MINUTES OVERSTATED';
+  if(isOff) banner.textContent='THE PARK GOT IT WRONG — '+diff+' MIN OFF';
   else if(isLonger) banner.textContent='LONGER THAN POSTED — '+(actual-posted)+' MIN UNDERSTATED';
-  else if(posted&&actual) banner.textContent='CLOSE ENOUGH ✓';
+  else if(posted&&actual) banner.textContent='ACCURATE ✓';
   else banner.textContent='WAIT TIME REPORTED';
 
   // Tweet
   let tweet='';
-  if(posted&&actual&&diff>5) tweet=`${park} posted ${posted} min. I waited ${actual}. That's ${factor}× inflation. Parks inflate wait times to sell Lightning Lane. ratingvalue.org/report #themepark #waittime`;
-  else if(posted&&actual&&isLonger) tweet=`${ride} at ${park} — posted ${posted} min but I waited ${actual}. Park understated the wait. Tracking accuracy at waittimetruth.com/report`;
-  else tweet=`Just reported my wait time at ${park} on waittimetruth.com/report — tracking whether parks lie about queue times.`;
+  if(posted&&actual&&diff>5) tweet=`${park} posted ${posted} min for ${ride}. I waited ${actual}. That's ${factor}× off. How accurate is your park? waittimetruth.com #themepark #waittime`;
+  else if(posted&&actual&&isLonger) tweet=`${ride} at ${park} — posted ${posted} min but I waited ${actual}. Tracking wait time accuracy at waittimetruth.com`;
+  else tweet=`Just checked wait time accuracy at ${park} on waittimetruth.com — how accurate is your park?`;
   document.getElementById('tweetBtn').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(tweet);
 
-  state._receiptData={park,ride,posted,actual,factor,diff,verdict,verdictClass,isInflated,isLonger};
+  state._receiptData={park,ride,posted,actual,factor,diff,verdict,verdictClass,isOff,isLonger};
 
   // Personalize AR CTA
   const arHeadline=document.getElementById('arCtaHeadline');
@@ -607,7 +609,7 @@ function buildReceipt(){
 }
 
 // ── CANVAS PNG ────────────────────────────────────────
-function generateCanvas({park,ride,posted,actual,factor,diff,verdictClass,isInflated,isLonger}){
+function generateCanvas({park,ride,posted,actual,factor,diff,verdictClass,isOff,isLonger}){
   const canvas=document.getElementById('receiptCanvas');
   const ctx=canvas.getContext('2d');
   const W=1080,H=1920;
@@ -619,26 +621,26 @@ function generateCanvas({park,ride,posted,actual,factor,diff,verdictClass,isInfl
   for(let y=0;y<H;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
 
   // Banner
-  const bc={lied:'#ff3b30',honest:'#22d87c',close:'#f5a623'};
+  const bc={off:'#ff3b30',honest:'#22d87c',close:'#f5a623'};
   ctx.fillStyle=bc[verdictClass]||'#555'; ctx.fillRect(0,0,W,200);
-  ctx.fillStyle=verdictClass==='lied'?'#fff':'#0a0a0a';
+  ctx.fillStyle=verdictClass==='off'?'#fff':'#0a0a0a';
   ctx.font='bold 52px sans-serif'; ctx.textAlign='center';
-  if(isInflated) {ctx.fillText('THE SIGN LIED',W/2,90);ctx.font='bold 38px sans-serif';ctx.fillText(diff+' MINUTES OVERSTATED',W/2,148);}
+  if(isOff) {ctx.fillText('THE PARK GOT IT WRONG',W/2,90);ctx.font='bold 38px sans-serif';ctx.fillText(diff+' MINUTES OFF',W/2,148);}
   else if(isLonger){ctx.fillText('LONGER THAN POSTED',W/2,90);ctx.font='bold 38px sans-serif';ctx.fillText((actual-posted)+' MIN UNDERSTATED',W/2,148);}
-  else {ctx.fillText('CLOSE ENOUGH ✓',W/2,110);}
+  else {ctx.fillText('ACCURATE ✓',W/2,110);}
 
   // Logo
   ctx.fillStyle='#fff';ctx.font='bold 36px sans-serif';ctx.textAlign='center';
   ctx.fillText('WaitTimeTruth.com',W/2,270);
-  ctx.fillStyle='#555';ctx.font='24px monospace';ctx.fillText('WAIT TIME RECEIPT',W/2,310);
+  ctx.fillStyle='#555';ctx.font='24px monospace';ctx.fillText('WAIT TIME ACCURACY RECEIPT',W/2,310);
 
   ctx.strokeStyle='#2a2a2a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(80,340);ctx.lineTo(W-80,340);ctx.stroke();
 
-  const rows=[['RIDE',ride],['PARK',park],['POSTED WAIT',posted?posted+' min':'—'],['YOUR ACTUAL',actual+' min'],['INFLATION FACTOR',factor!=='—'?factor+'×':'—']];
+  const rows=[['RIDE',ride],['PARK',park],['POSTED WAIT',posted?posted+' min':'—'],['YOUR ACTUAL',actual+' min'],['POSTED÷ACTUAL',factor!=='—'?factor+'×':'—']];
   let y=400;
   rows.forEach(([label,value])=>{
     ctx.fillStyle='#555';ctx.font='26px monospace';ctx.textAlign='left';ctx.fillText(label,80,y);
-    ctx.fillStyle=label==='YOUR ACTUAL'&&(isInflated||isLonger)?'#ff3b30':label==='INFLATION FACTOR'&&isInflated?'#ff3b30':'#e8e8e8';
+    ctx.fillStyle=label==='YOUR ACTUAL'&&(isOff||isLonger)?'#ff3b30':label==='POSTED÷ACTUAL'&&isOff?'#ff3b30':'#e8e8e8';
     ctx.font='bold 42px sans-serif';ctx.textAlign='right';ctx.fillText(value,W-80,y);
     ctx.strokeStyle='#1e1e1e';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(80,y+20);ctx.lineTo(W-80,y+20);ctx.stroke();
     y+=120;
@@ -662,8 +664,8 @@ function downloadReceipt(){
 }
 function copyCaption(){
   const d=state._receiptData;let cap='';
-  if(d.posted&&d.actual&&d.diff>5) cap=`${d.park} posted ${d.posted} min. I waited ${d.actual}. That's ${d.factor}× inflation.\n\nParks inflate wait times to sell Lightning Lane and Express Pass.\n\nReport yours 👇\nwaittimetruth.com/report\n\n#themepark #waittime #ratingvalue`;
-  else cap=`Checked wait time accuracy at ${d.park}. Tracking whether parks lie at waittimetruth.com/report\n\n#themepark #waittime`;
+  if(d.posted&&d.actual&&d.diff>5) cap=`${d.park} posted ${d.posted} min. I waited ${d.actual}. That's ${d.factor}× off.\n\nHow accurate is your park?.\n\nReport yours 👇\nwaittimetruth.com/report\n\n#themepark #waittime #ratingvalue`;
+  else cap=`Checked wait time accuracy at ${d.park}. Tracking wait time accuracy at waittimetruth.com/report\n\n#themepark #waittime`;
   navigator.clipboard.writeText(cap).then(()=>{const b=event.target;b.textContent='✓ Copied!';setTimeout(()=>b.textContent='📋 Copy Caption',2000);});
 }
 async function shareNative(){
@@ -671,17 +673,67 @@ async function shareNative(){
   try{c.toBlob(async blob=>{
     const file=new File([blob],'waittime-receipt.png',{type:'image/png'});
     if(navigator.share&&navigator.canShare({files:[file]})){
-      await navigator.share({title:'Did the park lie about wait times?',text:`${d.park} — posted ${d.posted} min, actual ${d.actual} min. waittimetruth.com/report`,files:[file]});
+      await navigator.share({title:'Did the park get it wrong?',text:`${d.park} — posted ${d.posted} min, actual ${d.actual} min. waittimetruth.com`,files:[file]});
     }else{downloadReceipt();}
   });}catch(e){downloadReceipt();}
 }
 
-// ── SUBMIT ────────────────────────────────────────────
+// ── SUBMIT (to receipt worker — gets permalink back) ──
+const RECEIPT_WORKER = 'https://wtt-receipt.waittimetruth.workers.dev';
+
 async function submitReport(park,ride,posted,actual,factor){
-  try{await fetch('https://rv-report.ratingvalue.workers.dev',{
-    method:'POST',headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({park,ride,posted,actual,factor:parseFloat(factor)||null,source:'report-page',ts:new Date().toISOString()}),
-  });}catch(e){}
+  try{
+    const res = await fetch(RECEIPT_WORKER + '/submit',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({park,ride,posted:posted?Number(posted):null,actual:Number(actual),source:'report-page'}),
+    });
+    const data = await res.json();
+    if(data.success && data.receiptUrl){
+      state.receiptUrl = data.receiptUrl;
+      state.receiptId = data.receiptId;
+      // Update share buttons with permalink
+      updateShareLinks(data.receiptUrl, park, ride, posted, actual, factor);
+      // Show permalink badge
+      showPermalink(data.receiptUrl);
+    }
+  }catch(e){
+    // Receipt still shows locally even if worker fails
+    console.log('Receipt worker unavailable, local receipt only');
+  }
+}
+
+function updateShareLinks(url, park, ride, posted, actual, factor){
+  const d = state._receiptData;
+  const isOff = d.isOff;
+
+  // Update tweet link to use permalink
+  const tweetText = isOff
+    ? `${park} posted ${posted} min for ${ride}. I waited ${actual}. That's ${factor}× off. How accurate is your park?\n${url}`
+    : `Checked wait time accuracy at ${park}. ${ride}: posted ${posted||'?'} min, actual ${actual} min.\n${url}`;
+  document.getElementById('tweetBtn').href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(tweetText);
+
+  // Add Facebook share button if not present
+  const fbBtn = document.getElementById('fbBtn');
+  if(fbBtn) fbBtn.href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(url);
+}
+
+function showPermalink(url){
+  // Add a permalink row above the share buttons
+  const card = document.querySelector('.receipt-card');
+  const shareRow = card.querySelector('.share-row');
+  if(!document.getElementById('permalinkRow')){
+    const row = document.createElement('div');
+    row.id = 'permalinkRow';
+    row.style.cssText = 'background:var(--dark);border:1px solid var(--border);border-radius:3px;padding:12px 16px;margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;';
+    row.innerHTML = `
+      <div style="overflow:hidden;">
+        <div style="font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Shareable Link</div>
+        <a href="${url}" target="_blank" style="font-family:var(--fm);font-size:13px;color:var(--green);word-break:break-all;">${url}</a>
+      </div>
+      <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='✓';setTimeout(()=>this.textContent='Copy',1500)})" style="font-family:var(--fm);font-size:11px;background:var(--green);color:var(--black);border:none;padding:8px 14px;cursor:pointer;border-radius:2px;letter-spacing:0.06em;flex-shrink:0;">Copy</button>
+    `;
+    card.insertBefore(row, shareRow);
+  }
 }
 
 // ── RESET ─────────────────────────────────────────────
