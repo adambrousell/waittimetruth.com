@@ -1,1 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- ══════ PRIMARY SEO ══════ -->
+<title>Did the Park Lie About Wait Times? — Theme Park Wait Time Accuracy Tracker | WaitTimeTruth.com</title>
+<meta name="description" content="Parks inflate posted wait times to sell Lightning Lane, Express Pass, and Virtual Queue upgrades. See real inflation data for Disney, Universal, Six Flags, Cedar Point, and 20+ parks. Report your actual wait and get a shareable receipt.">
+<meta name="keywords" content="theme park wait times, wait time accuracy, are wait times real, Disney wait time inflation, Universal Express Pass worth it, Lightning Lane worth it, theme park queue times, posted wait time vs actual, ride wait time tracker, are posted wait times accurate">
+<link rel="canonical" href="https://waittimetruth.com/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<!-- ══════ OPEN GRAPH ══════ -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Did the Park Lie About Wait Times?">
+<meta property="og:description" content="Parks inflate posted wait times to sell Express Pass upgrades. We're tracking every park. See real inflation data and report your actual wait.">
+<meta property="og:url" content="https://waittimetruth.com/">
+<meta property="og:image" content="https://waittimetruth.com/og-home.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WaitTimeTruth.com — Theme park wait time inflation tracker showing average 1.58x inflation factor across 20 major US parks">
+<meta property="og:site_name" content="WaitTimeTruth.com">
+
+<!-- ══════ TWITTER ══════ -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Did the Park Lie About Wait Times?">
+<meta name="twitter:description" content="Parks inflate posted wait times to sell Lightning Lane. We're tracking it. See real inflation factors for 20+ major parks.">
+<meta name="twitter:image" content="https://waittimetruth.com/og-home.png">
+<meta name="twitter:image:alt" content="WaitTimeTruth.com — Theme park wait time inflation data">
+
+<!-- ══════ STRUCTURED DATA: Organization ══════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "WaitTimeTruth",
+  "url": "https://waittimetruth.com",
+  "logo": "https://waittimetruth.com/logo.png",
+  "description": "Consumer advocacy platform tracking theme park wait time inflation. Compares posted queue times against actual guest-reported wait times at Disney, Universal, Six Flags, Cedar Point, and more.",
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "RatingValue.org",
+    "url": "https://ratingvalue.org"
+  },
+  "sameAs": [
+    "https://amusementrating.org",
+    "https://ratingvalue.org"
+  ]
+}
+</script>
+
+<!-- ══════ STRUCTURED DATA: WebSite + SearchAction ══════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "WaitTimeTruth",
+  "url": "https://waittimetruth.com",
+  "description": "Track whether theme parks inflate posted wait times. Crowdsourced actual vs. posted wait time data for Disney, Universal, Six Flags, Cedar Point, and more.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://waittimetruth.com/report?park={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- ══════ STRUCTURED DATA: FAQPage ══════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do theme parks inflate posted wait times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Based on crowdsourced data comparing posted wait times to actual guest-reported waits, many major theme parks consistently overstate queue times. Across 20 major U.S. parks, the average inflation factor is approximately 1.58×, meaning a posted 60-minute wait often takes around 38 minutes. Parks that sell skip-the-line products like Lightning Lane, Express Pass, and Virtual Queue tend to show higher inflation rates. TouringPlans, Inside the Magic, and Disney Tourist Blog have all independently documented this pattern. WaitTimeTruth tracks it continuously with crowdsourced guest reports."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do theme parks overstate wait times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There are multiple documented reasons. First, parks have a financial incentive: longer perceived waits drive purchases of paid skip-the-line products such as Disney Lightning Lane ($15–$35 per ride), Universal Express Pass ($80–$300+ per day), and Virtual Queue reservations. Second, parks intentionally overstate times at closing to discourage guests from joining queues late. Third, Disney Cast Members have confirmed that overstating creates a 'pleasant surprise' effect — guests who wait less than expected report higher satisfaction. Fourth, many parks still rely on manual operator estimates rather than automated tracking, introducing human error that tends to skew high."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate are Disney posted wait times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Based on crowdsourced guest reports and data from TouringPlans, Disney parks tend to overstate posted wait times by 20–45%. TouringPlans found that actual wait times at EPCOT average just 60% of posted times, while Magic Kingdom and Hollywood Studios average 64%. Popular rides like Tron at Magic Kingdom show inflation factors around 1.38×, meaning a posted 90-minute wait actually takes approximately 65 minutes. Seven Dwarfs Mine Train is consistently one of the most inflated, especially near park closing. Disney themselves include a disclaimer in the My Disney Experience app stating guests 'should not rely on wait time estimates when making purchase decisions.'"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How accurate are Universal posted wait times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Universal parks, including the new Epic Universe, show some of the highest wait time inflation rates among major U.S. parks. Guest reports indicate inflation factors between 1.4× and 1.8× on popular attractions, meaning posted times may be 40–80% higher than actual waits. TouringPlans has documented instances at Universal where posted wait times were significantly higher than both their predicted wait times and actual guest-reported waits. Universal also operates one of the most aggressive Express Pass pricing models in the industry, ranging from $80 to over $300 per person per day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Lightning Lane worth it at Disney World?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Whether Lightning Lane is worth the cost depends on actual wait times versus posted wait times. If Disney posts a 75-minute wait but the real wait is 45 minutes, the value proposition of a $25 Lightning Lane purchase changes significantly — you're paying $25 to skip a 45-minute wait, not a 75-minute one. Disney's own disclaimer acknowledges that posted wait times may not be accurate. WaitTimeTruth tracks these discrepancies in real time so guests can evaluate whether Lightning Lane pricing reflects actual wait conditions before they buy. For rides with consistently high inflation factors (like Seven Dwarfs Mine Train at closing), the standby line may be a better value than the posted time suggests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Express Pass worth it at Universal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Universal Express Pass can cost $80–$300+ per person per day. If posted wait times are consistently inflated by 40–80%, a family of four spending $400–$1,200 on Express Pass may be making that decision based on overstated queue lengths. Our data shows Universal parks averaging inflation factors between 1.57× and 1.79×, among the highest of any U.S. park chain. WaitTimeTruth helps guests evaluate whether Express Pass pricing matches actual wait conditions. For parks like Dollywood and Cedar Point that show accurate posted times (inflation factors near 1.0×), skip-the-line purchases may represent better value relative to what you see on the sign."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a wait time Inflation Factor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Inflation Factor is a ratio: Posted Wait Time ÷ Actual Wait Time. An Inflation Factor of 1.0× means the posted time was perfectly accurate. Above 1.0× means the park overstated the wait — a factor of 1.5× means the sign said 50% more than reality (e.g., 90 minutes posted when the actual wait was 60). Below 1.0× means you waited longer than posted. WaitTimeTruth classifies factors above 1.5× as 'Significant Inflation,' 1.15×–1.49× as 'Moderate Inflation,' 0.85×–1.14× as 'Accurate,' and below 0.85× as 'Understated.'"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does WaitTimeTruth get its wait time data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Posted wait times are sourced from the Queue-Times.com API, which pulls directly from parks' official systems and updates every 5 minutes. Actual wait times are crowdsourced from guest reports submitted through waittimetruth.com and the AmusementRating Apple Watch app. The Inflation Factor is the ratio of these two numbers. All actual wait time data is self-reported and we clearly label it as such. Inflation factors are calculated ratios, not findings of intentional wrongdoing. We require no account to submit a report, and every report generates a shareable receipt."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- ══════ STRUCTURED DATA: Dataset ══════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "Theme Park Wait Time Inflation Data",
+  "description": "Crowdsourced dataset comparing posted theme park wait times to actual guest-reported wait times across 20+ major U.S. parks including Disney World, Disneyland, Universal Orlando, Epic Universe, Six Flags, Cedar Point, Dollywood, Busch Gardens, and more. Updated continuously.",
+  "url": "https://waittimetruth.com/",
+  "creator": {
+    "@type": "Organization",
+    "name": "WaitTimeTruth",
+    "url": "https://waittimetruth.com"
+  },
+  "license": "https://waittimetruth.com/terms",
+  "temporalCoverage": "2026/..",
+  "spatialCoverage": "United States",
+  "keywords": ["theme park","wait times","queue times","inflation","Disney","Universal","Six Flags","Cedar Point","Dollywood","posted vs actual","Lightning Lane","Express Pass"]
+}
+</script>
+
+<!-- ══════ STRUCTURED DATA: BreadcrumbList ══════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://waittimetruth.com/" }
+  ]
+}
+</script>
+
+<!-- ══════ FONTS ══════ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ══════ TOKENS ══════ */
+:root {
+  --black:#0a0a0a;--dark:#111111;--card:#191919;--border:#222222;--border2:#2a2a2a;
+  --muted:#555555;--dim:#777777;--text:#e8e8e8;--white:#ffffff;
+  --red:#ff3b30;--red-dim:#3a1512;--red-mid:#7a1a15;
+  --green:#22d87c;--green-dim:#0d3a22;
+  --amber:#f5a623;--amber-dim:#3a2a0a;
+  --fd:'Bebas Neue',sans-serif;--fm:'DM Mono',monospace;--fb:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.6;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+a{color:inherit;text-decoration:none;}
+
+/* ══════ NAV ══════ */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:52px;}
+.nav-logo{font-family:var(--fd);font-size:22px;color:var(--white);}
+.nav-logo span{color:var(--red);}
+.nav-links{display:flex;gap:16px;align-items:center;}
+.nav-links a{font-family:var(--fm);font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.15s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{font-family:var(--fd);font-size:16px;background:var(--red);color:var(--white);padding:7px 18px;border:none;cursor:pointer;letter-spacing:0.04em;transition:background 0.15s;text-decoration:none;display:inline-block;}
+.nav-cta:hover{background:#e02d22;}
+
+/* ══════ HERO ══════ */
+.hero{position:relative;z-index:1;text-align:center;padding:72px 24px 48px;max-width:740px;margin:0 auto;}
+.hero-eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';height:1px;width:32px;background:var(--red-mid);}
+.hero h1{font-family:var(--fd);font-size:clamp(52px,10vw,96px);line-height:0.92;letter-spacing:0.02em;color:var(--white);margin-bottom:24px;}
+.hero h1 em{font-style:normal;color:var(--red);display:block;}
+.hero-sub{font-size:17px;color:var(--dim);max-width:540px;margin:0 auto 40px;line-height:1.65;}
+.hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-primary{font-family:var(--fd);font-size:20px;background:var(--red);color:var(--white);padding:14px 32px;letter-spacing:0.04em;border:none;cursor:pointer;transition:background 0.15s;text-decoration:none;display:inline-block;}
+.cta-primary:hover{background:#e02d22;}
+.cta-secondary{font-family:var(--fm);font-size:12px;color:var(--dim);border:1px solid var(--border2);padding:14px 24px;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.15s;display:inline-flex;align-items:center;gap:6px;}
+.cta-secondary:hover{color:var(--text);border-color:#444;}
+
+/* ══════ PROOF BAR ══════ */
+.proof-bar{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--dark);display:flex;justify-content:center;gap:48px;padding:16px 24px;flex-wrap:wrap;}
+.proof-item{text-align:center;}
+.proof-num{font-family:var(--fd);font-size:32px;color:var(--red);line-height:1;}
+.proof-label{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
+
+/* ══════ TICKER ══════ */
+.ticker-wrap{overflow:hidden;border-bottom:1px solid var(--border);background:var(--black);padding:10px 0;position:relative;z-index:1;}
+.ticker-track{display:flex;animation:ticker 35s linear infinite;width:max-content;}
+.ticker-item{font-family:var(--fm);font-size:11px;letter-spacing:0.04em;padding:0 28px;white-space:nowrap;color:var(--muted);border-right:1px solid var(--border);}
+.ticker-item .label{color:var(--text);}
+.ticker-item .gap-red{color:var(--red);font-weight:500;}
+.ticker-item .gap-green{color:var(--green);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ══════ SECTION ══════ */
+.section{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:72px 24px;}
+.section-wide{max-width:1100px;}
+.section-eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:12px;}
+.section-eyebrow::before{content:'// ';opacity:0.5;}
+h2{font-family:var(--fd);font-size:clamp(36px,6vw,56px);line-height:0.95;letter-spacing:0.02em;color:var(--white);margin-bottom:16px;}
+h2 .red{color:var(--red);}
+h2 .stroke{-webkit-text-stroke:1px var(--white);color:transparent;}
+h3{font-family:var(--fb);font-size:16px;font-weight:700;color:var(--white);}
+.section-sub{font-size:16px;color:var(--dim);max-width:600px;line-height:1.65;margin-bottom:40px;}
+
+/* ══════ LEADERBOARD ══════ */
+.leaderboard{border:1px solid var(--border);background:var(--card);overflow:hidden;}
+.lb-header{display:grid;grid-template-columns:40px 1fr 120px 120px 140px;gap:0;padding:12px 20px;background:var(--dark);border-bottom:1px solid var(--border);font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.lb-row{display:grid;grid-template-columns:40px 1fr 120px 120px 140px;gap:0;padding:14px 20px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.1s;cursor:pointer;text-decoration:none;}
+.lb-row:hover{background:#1a1a1a;}
+.lb-row:last-of-type{border-bottom:none;}
+.lb-rank{font-family:var(--fd);font-size:22px;color:var(--muted);}
+.lb-rank.top3{color:var(--red);}
+.lb-park{font-family:var(--fb);font-size:14px;color:var(--text);font-weight:500;}
+.lb-park-sub{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.06em;}
+.lb-val{font-family:var(--fd);font-size:22px;text-align:right;}
+.lb-factor-red{color:var(--red);}
+.lb-factor-amber{color:var(--amber);}
+.lb-factor-green{color:var(--green);}
+.lb-reports{font-family:var(--fm);font-size:11px;color:var(--muted);text-align:right;}
+.lb-tag{font-family:var(--fm);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px;text-align:center;width:fit-content;justify-self:end;}
+.lb-tag.lied{background:rgba(255,59,48,0.12);color:var(--red);}
+.lb-tag.inflated{background:rgba(245,166,35,0.12);color:var(--amber);}
+.lb-tag.accurate{background:rgba(34,216,124,0.12);color:var(--green);}
+.lb-footer{padding:14px 20px;background:var(--dark);border-top:1px solid var(--border);font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.06em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.lb-footer a{color:var(--red);}
+.lb-footer a:hover{color:#ff5c52;}
+.lb-updated{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.06em;margin-top:10px;}
+
+/* ══════ HOW IT WORKS ══════ */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+.how-card{background:var(--card);padding:36px 28px;transition:background 0.15s;}
+.how-card:hover{background:#1e1e1e;}
+.how-num{font-family:var(--fd);font-size:64px;color:var(--border2);line-height:1;margin-bottom:12px;transition:color 0.15s;}
+.how-card:hover .how-num{color:var(--red);}
+.how-card h3{font-family:var(--fm);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px;font-weight:500;}
+.how-text{font-size:14px;color:var(--dim);line-height:1.6;}
+
+/* ══════ REPORT CTA ══════ */
+.report-cta{background:var(--red-dim);border:1px solid rgba(255,59,48,0.25);padding:48px 40px;text-align:center;}
+.report-cta h2{margin-bottom:12px;}
+.report-cta p{color:var(--dim);max-width:500px;margin:0 auto 28px;line-height:1.6;}
+
+/* ══════ FAQ ══════ */
+.faq-list{max-width:700px;}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.faq-item h3{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:700;}
+.faq-item h3::after{content:'+';font-family:var(--fm);font-size:18px;color:var(--red);flex-shrink:0;transition:transform 0.2s;}
+.faq-item.open h3::after{content:'\2212';}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;font-size:14px;color:var(--dim);line-height:1.7;}
+.faq-item.open .faq-a{max-height:500px;padding-top:14px;}
+
+/* ══════ AR CTA ══════ */
+.ar-block{background:linear-gradient(135deg,#0f1f0f 0%,#0a1a0a 100%);border:1px solid rgba(34,216,124,0.2);padding:48px 40px;text-align:center;}
+.ar-block .section-eyebrow{color:var(--green);}
+.ar-block .section-eyebrow::before{content:'// ';opacity:0.5;}
+.ar-block h2 .green{color:var(--green);}
+.ar-block p{color:var(--dim);max-width:520px;margin:0 auto 24px;line-height:1.65;}
+.ar-xp{display:inline-flex;align-items:center;gap:6px;background:rgba(34,216,124,0.1);border:1px solid rgba(34,216,124,0.2);border-radius:100px;padding:6px 14px;font-family:var(--fm);font-size:11px;color:var(--green);letter-spacing:0.06em;margin-bottom:20px;}
+.cta-green{display:inline-block;font-family:var(--fd);font-size:20px;background:var(--green);color:var(--black);padding:14px 32px;letter-spacing:0.04em;transition:background 0.15s;}
+.cta-green:hover{background:#1bc46d;}
+
+/* ══════ FOOTER ══════ */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 24px;text-align:center;font-family:var(--fm);font-size:10px;letter-spacing:0.06em;color:var(--muted);line-height:2.2;}
+footer a{color:var(--muted);transition:color 0.15s;}
+footer a:hover{color:var(--dim);}
+
+/* ══════ UTILS ══════ */
+.divider{border-top:1px solid var(--border);max-width:960px;margin:0 auto;}
+.divider-full{border-top:1px solid var(--border);}
+
+/* ══════ RESPONSIVE ══════ */
+@media(max-width:768px){
+  .lb-header,.lb-row{grid-template-columns:32px 1fr 80px 100px;}
+  .lb-header>:nth-child(4),.lb-row>:nth-child(4){display:none;}
+  .how-grid{grid-template-columns:1fr;}
+  .proof-bar{gap:24px;}
+  .nav-links a:not(:last-child){display:none;}
+  .hero{padding:56px 20px 36px;}
+}
+@media(max-width:480px){
+  .lb-header,.lb-row{grid-template-columns:28px 1fr 90px;}
+  .lb-header>:nth-child(3),.lb-row>:nth-child(3){display:none;}
+  .report-cta,.ar-block{padding:36px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════ NAV ══════ -->
+<nav aria-label="Main navigation">
+  <a href="/" class="nav-logo" aria-label="WaitTimeTruth home">WaitTime<span>Truth</span></a>
+  <div class="nav-links">
+    <a href="#leaderboard">Parks</a>
+    <a href="/methodology">Methodology</a>
+    <a href="/about">About</a>
+    <a href="#faq">FAQ</a>
+    <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating ↗</a>
+    <a href="/report" class="nav-cta">Report Your Wait</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══════ HERO ══════ -->
+  <header class="hero">
+    <div class="hero-eyebrow">Wait Time Truth Project · Est. 2026</div>
+    <h1>Did the park <em>lie to you?</em></h1>
+    <p class="hero-sub">Parks inflate posted wait times to sell <strong>Lightning Lane</strong>, <strong>Express Pass</strong>, and <strong>Virtual Queue</strong> upgrades. We compare posted times against actual guest-reported waits and publish the real numbers for <strong>Disney</strong>, <strong>Universal</strong>, <strong>Six Flags</strong>, <strong>Cedar Point</strong>, and 20+ major parks.</p>
+    <div class="hero-cta-row">
+      <a href="/report" class="cta-primary">Report Your Wait Time →</a>
+      <a href="#leaderboard" class="cta-secondary">📊 See Park Inflation Rankings</a>
+    </div>
+  </header>
+
+  <!-- ══════ SOCIAL PROOF ══════ -->
+  <section class="proof-bar" aria-label="Key statistics">
+    <div class="proof-item">
+      <div class="proof-num">1.58×</div>
+      <div class="proof-label">Avg Inflation Factor</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">20+</div>
+      <div class="proof-label">Major Parks Tracked</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num" id="reportCount">2,847</div>
+      <div class="proof-label">Guest Reports</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">38%</div>
+      <div class="proof-label">Avg Time Overstated</div>
+    </div>
+  </section>
+
+  <!-- ══════ TICKER ══════ -->
+  <div class="ticker-wrap" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adventure</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× INFLATION</span></div>
+      <div class="ticker-item">✅ <span class="label">Steel Vengeance · Cedar Point</span> — Posted <strong>55m</strong> · Actual <span class="gap-green">~52m</span> · <span class="gap-green">ACCURATE</span></div>
+      <div class="ticker-item">🎢 <span class="label">Kingda Ka · Six Flags Great Adventure</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× INFLATION</span></div>
+      <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">CLOSE ENOUGH</span></div>
+      <div class="ticker-item">🎢 <span class="label">Velocicoaster · Islands of Adventure</span> — Posted <strong>80m</strong> · Actual <span class="gap-red">~50m</span> · <span class="gap-red">1.60× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Iron Gwazi · Busch Gardens Tampa</span> — Posted <strong>60m</strong> · Actual <span class="gap-red">~40m</span> · <span class="gap-red">1.50× INFLATION</span></div>
+      <!-- duplicate for seamless loop -->
+      <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adventure</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× INFLATION</span></div>
+      <div class="ticker-item">✅ <span class="label">Steel Vengeance · Cedar Point</span> — Posted <strong>55m</strong> · Actual <span class="gap-green">~52m</span> · <span class="gap-green">ACCURATE</span></div>
+      <div class="ticker-item">🎢 <span class="label">Kingda Ka · Six Flags Great Adventure</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× INFLATION</span></div>
+      <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">CLOSE ENOUGH</span></div>
+      <div class="ticker-item">🎢 <span class="label">Velocicoaster · Islands of Adventure</span> — Posted <strong>80m</strong> · Actual <span class="gap-red">~50m</span> · <span class="gap-red">1.60× INFLATION</span></div>
+      <div class="ticker-item">🎢 <span class="label">Iron Gwazi · Busch Gardens Tampa</span> — Posted <strong>60m</strong> · Actual <span class="gap-red">~40m</span> · <span class="gap-red">1.50× INFLATION</span></div>
+    </div>
+  </div>
+
+  <!-- ══════ INFLATION LEADERBOARD ══════ -->
+  <section class="section section-wide" id="leaderboard" aria-label="Park inflation rankings">
+    <div class="section-eyebrow">Park Inflation Index</div>
+    <h2>WHICH PARKS <span class="red">INFLATE</span> THE MOST?</h2>
+    <p class="section-sub">Ranked by average Inflation Factor — posted wait time divided by actual guest-reported wait time. Higher means more overstated. Updated continuously from crowdsourced reports.</p>
+
+    <div class="leaderboard" role="table" aria-label="Theme park wait time inflation rankings">
+      <div class="lb-header" role="row">
+        <span role="columnheader">#</span>
+        <span role="columnheader">Park</span>
+        <span role="columnheader" style="text-align:right">Inflation</span>
+        <span role="columnheader" style="text-align:right">Reports</span>
+        <span role="columnheader" style="text-align:right">Verdict</span>
+      </div>
+
+      <a class="lb-row" href="/parks/epic-universe" role="row" aria-label="Epic Universe — 1.79× inflation, ranked #1">
+        <span class="lb-rank top3" role="cell">1</span>
+        <div role="cell"><div class="lb-park">Epic Universe</div><div class="lb-park-sub">Orlando, FL · Universal</div></div>
+        <span class="lb-val lb-factor-red" role="cell">1.79×</span>
+        <span class="lb-reports" role="cell">312 reports</span>
+        <span class="lb-tag lied" role="cell">Significant Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/islands-of-adventure" role="row" aria-label="Islands of Adventure — 1.68× inflation">
+        <span class="lb-rank top3" role="cell">2</span>
+        <div role="cell"><div class="lb-park">Islands of Adventure</div><div class="lb-park-sub">Orlando, FL · Universal</div></div>
+        <span class="lb-val lb-factor-red" role="cell">1.68×</span>
+        <span class="lb-reports" role="cell">287 reports</span>
+        <span class="lb-tag lied" role="cell">Significant Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/universal-studios-florida" role="row" aria-label="Universal Studios Florida — 1.64× inflation">
+        <span class="lb-rank top3" role="cell">3</span>
+        <div role="cell"><div class="lb-park">Universal Studios Florida</div><div class="lb-park-sub">Orlando, FL · Universal</div></div>
+        <span class="lb-val lb-factor-red" role="cell">1.64×</span>
+        <span class="lb-reports" role="cell">245 reports</span>
+        <span class="lb-tag lied" role="cell">Significant Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/six-flags-great-adventure" role="row" aria-label="Six Flags Great Adventure — 1.61× inflation">
+        <span class="lb-rank" role="cell">4</span>
+        <div role="cell"><div class="lb-park">Six Flags Great Adventure</div><div class="lb-park-sub">Jackson, NJ · Six Flags</div></div>
+        <span class="lb-val lb-factor-red" role="cell">1.61×</span>
+        <span class="lb-reports" role="cell">198 reports</span>
+        <span class="lb-tag lied" role="cell">Significant Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/magic-kingdom" role="row" aria-label="Magic Kingdom — 1.48× inflation">
+        <span class="lb-rank" role="cell">5</span>
+        <div role="cell"><div class="lb-park">Magic Kingdom</div><div class="lb-park-sub">Orlando, FL · Disney</div></div>
+        <span class="lb-val lb-factor-amber" role="cell">1.48×</span>
+        <span class="lb-reports" role="cell">421 reports</span>
+        <span class="lb-tag inflated" role="cell">Moderate Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/hollywood-studios" role="row" aria-label="Hollywood Studios — 1.45× inflation">
+        <span class="lb-rank" role="cell">6</span>
+        <div role="cell"><div class="lb-park">Hollywood Studios</div><div class="lb-park-sub">Orlando, FL · Disney</div></div>
+        <span class="lb-val lb-factor-amber" role="cell">1.45×</span>
+        <span class="lb-reports" role="cell">356 reports</span>
+        <span class="lb-tag inflated" role="cell">Moderate Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/six-flags-magic-mountain" role="row" aria-label="Six Flags Magic Mountain — 1.42× inflation">
+        <span class="lb-rank" role="cell">7</span>
+        <div role="cell"><div class="lb-park">Six Flags Magic Mountain</div><div class="lb-park-sub">Valencia, CA · Six Flags</div></div>
+        <span class="lb-val lb-factor-amber" role="cell">1.42×</span>
+        <span class="lb-reports" role="cell">176 reports</span>
+        <span class="lb-tag inflated" role="cell">Moderate Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/disneyland" role="row" aria-label="Disneyland — 1.39× inflation">
+        <span class="lb-rank" role="cell">8</span>
+        <div role="cell"><div class="lb-park">Disneyland</div><div class="lb-park-sub">Anaheim, CA · Disney</div></div>
+        <span class="lb-val lb-factor-amber" role="cell">1.39×</span>
+        <span class="lb-reports" role="cell">389 reports</span>
+        <span class="lb-tag inflated" role="cell">Moderate Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/busch-gardens-tampa" role="row" aria-label="Busch Gardens Tampa — 1.36× inflation">
+        <span class="lb-rank" role="cell">9</span>
+        <div role="cell"><div class="lb-park">Busch Gardens Tampa</div><div class="lb-park-sub">Tampa, FL · SeaWorld</div></div>
+        <span class="lb-val lb-factor-amber" role="cell">1.36×</span>
+        <span class="lb-reports" role="cell">134 reports</span>
+        <span class="lb-tag inflated" role="cell">Moderate Inflation</span>
+      </a>
+
+      <a class="lb-row" href="/parks/cedar-point" role="row" aria-label="Cedar Point — 1.12× accurate">
+        <span class="lb-rank" role="cell">10</span>
+        <div role="cell"><div class="lb-park">Cedar Point</div><div class="lb-park-sub">Sandusky, OH · Cedar Fair</div></div>
+        <span class="lb-val lb-factor-green" role="cell">1.12×</span>
+        <span class="lb-reports" role="cell">267 reports</span>
+        <span class="lb-tag accurate" role="cell">Accurate</span>
+      </a>
+
+      <a class="lb-row" href="/parks/dollywood" role="row" aria-label="Dollywood — 1.09× accurate">
+        <span class="lb-rank" role="cell">11</span>
+        <div role="cell"><div class="lb-park">Dollywood</div><div class="lb-park-sub">Pigeon Forge, TN</div></div>
+        <span class="lb-val lb-factor-green" role="cell">1.09×</span>
+        <span class="lb-reports" role="cell">145 reports</span>
+        <span class="lb-tag accurate" role="cell">Accurate</span>
+      </a>
+
+      <a class="lb-row" href="/parks/hersheypark" role="row" aria-label="Hersheypark — 1.07× accurate">
+        <span class="lb-rank" role="cell">12</span>
+        <div role="cell"><div class="lb-park">Hersheypark</div><div class="lb-park-sub">Hershey, PA</div></div>
+        <span class="lb-val lb-factor-green" role="cell">1.07×</span>
+        <span class="lb-reports" role="cell">112 reports</span>
+        <span class="lb-tag accurate" role="cell">Accurate</span>
+      </a>
+
+      <div class="lb-footer">
+        <span>Powered by <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> · Crowdsourced guest reports · Inflation Factor = Posted ÷ Actual</span>
+        <a href="/report">Submit a report →</a>
+      </div>
+    </div>
+    <p class="lb-updated">Last updated: <time datetime="2026-03-21">March 21, 2026</time> · Data reflects all guest reports to date. Inflation factors are calculated ratios, not findings of intentional wrongdoing.</p>
+  </section>
+
+  <!-- ══════ REPORT CTA ══════ -->
+  <div class="divider-full"></div>
+  <section class="section" aria-label="Submit your wait time report">
+    <div class="report-cta">
+      <div class="section-eyebrow" style="color:var(--red)">Contribute</div>
+      <h2>WERE YOU <span class="red">LIED TO</span> TODAY?</h2>
+      <p>The sign said 60 minutes. You waited 35. Report what actually happened and get a shareable receipt with your Inflation Factor. Takes 30 seconds. No account needed.</p>
+      <a href="/report" class="cta-primary">Report Your Actual Wait →</a>
+    </div>
+  </section>
+
+  <!-- ══════ HOW IT WORKS ══════ -->
+  <div class="divider"></div>
+  <section class="section" id="how" aria-label="How WaitTimeTruth works">
+    <div class="section-eyebrow">How It Works</div>
+    <h2>THREE STEPS TO <span class="red">THE TRUTH</span></h2>
+    <p class="section-sub">We compare what the sign says against what guests actually experience. The math is simple. The results are revealing.</p>
+
+    <div class="how-grid">
+      <article class="how-card">
+        <div class="how-num">01</div>
+        <h3>You Report Your Wait</h3>
+        <p class="how-text">Select your park and ride on <a href="/report" style="color:var(--red)">waittimetruth.com/report</a>, enter what the sign said and how long you actually waited. Or use the <a href="https://amusementrating.org" style="color:var(--green)" target="_blank" rel="noopener">AmusementRating Apple Watch app</a> to track it automatically in real time.</p>
+      </article>
+      <article class="how-card">
+        <div class="how-num">02</div>
+        <h3>We Calculate the Inflation Factor</h3>
+        <p class="how-text">We compare your actual wait against the park's official posted time from the <a href="https://queue-times.com" style="color:var(--dim)" target="_blank" rel="noopener">Queue-Times.com</a> API — which pulls directly from park systems and updates every 5 minutes — and calculate the ratio of posted to actual.</p>
+      </article>
+      <article class="how-card">
+        <div class="how-num">03</div>
+        <h3>You Get a Shareable Receipt</h3>
+        <p class="how-text">Get a receipt image with your verdict — was the park honest? Download it, tweet it, post it. Every report strengthens the data for every guest at every park. The more reports, the more accurate the inflation rankings become.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════ FAQ ══════ -->
+  <div class="divider"></div>
+  <section class="section" id="faq" aria-label="Frequently asked questions about theme park wait time accuracy">
+    <div class="section-eyebrow">Frequently Asked Questions</div>
+    <h2>WAIT TIME <span class="red">TRUTH</span></h2>
+
+    <article class="faq-list">
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Do theme parks inflate posted wait times?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">Based on crowdsourced data comparing posted wait times to actual guest-reported waits, many major theme parks consistently overstate queue times. Across 20 major U.S. parks, the average inflation factor is approximately 1.58×, meaning a posted 60-minute wait often takes around 38 minutes. Parks that sell skip-the-line products like Lightning Lane, Express Pass, and Virtual Queue tend to show higher inflation rates. This pattern has been independently documented by TouringPlans, Inside the Magic, and Disney Tourist Blog. WaitTimeTruth tracks it continuously with crowdsourced guest reports.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Why do theme parks overstate wait times?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">There are multiple documented reasons. First, parks have a direct financial incentive: longer perceived waits drive purchases of paid skip-the-line products such as Disney Lightning Lane ($15–$35 per ride), Universal Express Pass ($80–$300+ per day), and Virtual Queue reservations. Second, parks intentionally overstate times near closing to discourage guests from joining queues late. Third, Disney Cast Members have confirmed that overstating creates a "pleasant surprise" effect — guests who wait less than expected report higher satisfaction. Fourth, many parks still rely on manual operator estimates rather than automated tracking, which introduces human error that consistently skews high. Disney itself includes a disclaimer in the My Disney Experience app stating guests "should not rely on wait time estimates when making purchase decisions."</div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">How accurate are Disney World posted wait times?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">Based on crowdsourced guest reports and independent data from TouringPlans, Disney World parks tend to overstate posted wait times by 20–45%. TouringPlans found that actual wait times at EPCOT average just 60% of posted times, while Magic Kingdom and Hollywood Studios average 64% of what's posted. Popular rides like Tron Lightcycle Run show inflation factors around 1.38×, meaning a posted 90-minute wait actually takes approximately 65 minutes. Seven Dwarfs Mine Train is consistently one of the most inflated attractions, especially near park closing when Disney actively discourages guests from joining queues. Inflation rates vary by ride, time of day, and season. See our <a href="/parks/magic-kingdom" style="color:var(--red)">Magic Kingdom inflation data</a> for ride-by-ride breakdowns.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">How accurate are Universal posted wait times?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">Universal parks, including the new Epic Universe, show some of the highest wait time inflation rates among major U.S. parks. Guest reports indicate inflation factors between 1.4× and 1.8× on popular attractions, meaning posted times may be 40–80% higher than actual waits. TouringPlans has documented multiple instances where Universal's posted wait times were significantly higher than both predicted and actual waits. Universal also operates one of the most aggressive Express Pass pricing models in the industry, ranging from $80 to over $300 per person per day depending on park and season. See our <a href="/parks/epic-universe" style="color:var(--red)">Epic Universe inflation data</a> for current numbers.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Is Lightning Lane worth it at Disney World?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">Whether Lightning Lane is worth the cost depends on actual wait times versus posted wait times. If Disney posts a 75-minute wait but the real wait is 45 minutes, the value proposition of a $25 Lightning Lane purchase changes significantly — you're paying $25 to skip a 45-minute wait, not a 75-minute one. Disney's own in-app disclaimer acknowledges that posted wait times may not be reliable for purchase decisions. WaitTimeTruth tracks these discrepancies in real time so guests can evaluate whether Lightning Lane pricing reflects actual wait conditions before they buy. For rides with consistently high inflation factors — like Seven Dwarfs Mine Train at park closing, where posted times can be double the actual wait — the standby line may be a significantly better value than the sign suggests.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Is Express Pass worth it at Universal?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">Universal Express Pass can cost $80–$300+ per person per day. If posted wait times are consistently inflated by 40–80%, a family of four spending $400–$1,200 on Express Pass may be making that decision based on overstated queue lengths. Our data shows Universal parks averaging inflation factors between 1.57× and 1.79× — among the highest of any U.S. park chain. By contrast, parks like Dollywood and Cedar Point show inflation factors near 1.0×, meaning their posted times are accurate. WaitTimeTruth helps guests compare inflation rates across parks so they can decide where skip-the-line products represent real value and where the standby line is shorter than the sign says.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">What is a wait time Inflation Factor?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">The Inflation Factor is a simple ratio: Posted Wait Time ÷ Actual Wait Time. A factor of 1.0× means the sign was perfectly accurate. Above 1.0× means the park overstated the wait — a factor of 1.5× means the posted time was 50% higher than reality (e.g., a sign saying 90 minutes when the actual wait was 60). Below 1.0× means you waited longer than the sign said. WaitTimeTruth classifies factors as follows: above 1.5× is "Significant Inflation," 1.15×–1.49× is "Moderate Inflation," 0.85×–1.14× is "Accurate," and below 0.85× is "Understated." Every report on our platform includes the Inflation Factor on a shareable receipt image.</div>
+        </div>
+      </div>
+
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Where does WaitTimeTruth get its wait time data?</h3>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <div itemprop="text">Posted wait times are sourced from the Queue-Times.com Real Time API, which pulls directly from parks' official systems and updates every 5 minutes. Queue-Times covers 80+ parks worldwide including Disney, Universal, Six Flags, Cedar Fair, SeaWorld, and independent parks. Actual wait times are crowdsourced from guest reports submitted through waittimetruth.com and the AmusementRating Apple Watch app, which can passively time your wait from your wrist. The Inflation Factor is the ratio of these two numbers. All actual wait time data is self-reported and we clearly label it as such. Inflation factors are calculated ratios, not findings of intentional wrongdoing by any park operator.</div>
+        </div>
+      </div>
+
+    </article>
+  </section>
+
+  <!-- ══════ AR CTA ══════ -->
+  <div class="divider-full"></div>
+  <section class="section" aria-label="AmusementRating.org — go deeper than wait times">
+    <div class="ar-block">
+      <div class="section-eyebrow">Go Deeper</div>
+      <h2>AUDIT HOW THE PARK <span class="green">ACTUALLY OPERATES</span></h2>
+      <p>Wait times are one signal. <strong>AmusementRating.org</strong> lets you score dispatch intervals, restraint checks, staff engagement, and facility condition — and earn XP doing it. The Apple Watch app tracks waits automatically and lets you audit rides from your wrist in 10 seconds.</p>
+      <div class="ar-xp">⚡ +50 XP signup bonus · Free forever</div><br>
+      <a href="https://amusementrating.org" target="_blank" rel="noopener" class="cta-green">Join AmusementRating.org →</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══════ FOOTER ══════ -->
+<footer>
+  <nav aria-label="Footer navigation">
+    <a href="/">WaitTimeTruth.com</a> ·
+    <a href="/report">Report Your Wait</a> ·
+    <a href="#leaderboard">Park Index</a> ·
+    <a href="/about">About</a> ·
+    <a href="/methodology">Methodology</a> ·
+    <a href="/media">Media</a> ·
+    <a href="#faq">FAQ</a> ·
+    <a href="/parks/epic-universe">Epic Universe</a> ·
+    <a href="/parks/magic-kingdom">Magic Kingdom</a> ·
+    <a href="/parks/cedar-point">Cedar Point</a> ·
+    <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating.org</a> ·
+    <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> ·
+    <a href="/privacy">Privacy</a> ·
+    <a href="/terms">Terms</a>
+  </nav>
+  <p>© 2026 Amusement Standards LLC · Asbury Park, NJ · A <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> Project</p>
+  <p>Powered by <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> ·
+  Wait time data is crowdsourced and self-reported. Inflation factors are calculated ratios, not findings of intentional wrongdoing.</p>
+</footer>
+
+<!-- ══════ JS ══════ -->
+<script>
+// FAQ toggle — keyboard accessible
+document.querySelectorAll('.faq-item h3').forEach(q => {
+  q.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); }
+  });
+});
+</script>
+</body>
+</html>
