@@ -968,15 +968,28 @@ function showPermalink(url){
   const card = document.querySelector('.receipt-card');
   const shareRow = card.querySelector('.share-row');
   if(!document.getElementById('permalinkRow')){
+    const d = state._receiptData || {};
+    const isOff = d.isOff;
+    const isLonger = d.isLonger;
+    const accent = isOff||isLonger ? 'var(--red)' : 'var(--green)';
+    const accentRgb = isOff||isLonger ? '255,59,48' : '34,216,124';
+    const shortId = state.receiptId || url.split('/').pop();
+
     const row = document.createElement('div');
     row.id = 'permalinkRow';
-    row.style.cssText = 'background:var(--dark);border:1px solid var(--border);border-radius:3px;padding:12px 16px;margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;';
+    row.style.cssText = `
+      margin-top:20px;padding:24px;border-radius:8px;text-align:center;position:relative;overflow:hidden;
+      background:radial-gradient(ellipse at center, rgba(${accentRgb},0.08) 0%, transparent 70%), #0d0d0f;
+      border:1px solid rgba(${accentRgb},0.2);
+    `;
     row.innerHTML = `
-      <div style="overflow:hidden;">
-        <div style="font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Shareable Link</div>
-        <a href="${url}" target="_blank" style="font-family:var(--fm);font-size:13px;color:var(--green);word-break:break-all;">${url}</a>
+      <div style="font-family:var(--fd);font-size:14px;letter-spacing:0.12em;color:rgba(255,255,255,0.3);margin-bottom:8px;">YOUR RECEIPT</div>
+      <div style="font-family:var(--fd);font-size:42px;color:${accent};letter-spacing:0.04em;margin-bottom:4px;">#${shortId}</div>
+      <div style="font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:16px;word-break:break-all;">${url}</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='📋 Copy Link',2000)})" style="font-family:var(--fm);font-size:12px;background:${accent};color:#0a0a0a;border:none;padding:12px 24px;cursor:pointer;border-radius:100px;letter-spacing:0.06em;font-weight:600;">📋 Copy Link</button>
+        <button onclick="if(navigator.share)navigator.share({title:'Wait Time Receipt',url:'${url}'})" style="font-family:var(--fm);font-size:12px;background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.15);padding:12px 24px;cursor:pointer;border-radius:100px;letter-spacing:0.06em;">↗ Share</button>
       </div>
-      <button onclick="navigator.clipboard.writeText('${url}').then(()=>{this.textContent='\u2713';setTimeout(()=>this.textContent='Copy',1500)})" style="font-family:var(--fm);font-size:11px;background:var(--green);color:var(--black);border:none;padding:8px 14px;cursor:pointer;border-radius:2px;letter-spacing:0.06em;flex-shrink:0;">Copy</button>
     `;
     card.insertBefore(row, shareRow);
   }
