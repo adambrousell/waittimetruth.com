@@ -883,7 +883,7 @@ function downloadReceipt(){
 }
 function copyCaption(){
   const d=state._receiptData;
-  const url = state.receiptUrl || 'waittimetruth.com/report';
+  const url = state.socialUrl || state.receiptUrl || 'waittimetruth.com/report';
   let cap='';
   if(d.posted&&d.actual&&d.diff>5) cap=`${d.park} posted ${d.posted} min. I waited ${d.actual}. That's ${d.factor}\u00d7 off.\n\nHow accurate is your park?\n\nReport yours \ud83d\udc47\n${url}\n\n#themepark #waittime #ratingvalue`;
   else cap=`Checked wait time accuracy at ${d.park}.\n\n${url}\n\n#themepark #waittime`;
@@ -941,9 +941,10 @@ async function submitReport(park,ride,posted,actual,factor){
     const data = await res.json();
     if(data.success && data.receiptUrl){
       state.receiptUrl = data.receiptUrl;
+      state.socialUrl = data.socialUrl || data.receiptUrl;
       state.receiptId = data.receiptId;
-      updateShareLinks(data.receiptUrl, park, ride, posted, actual, factor);
-      showPermalink(data.receiptUrl);
+      updateShareLinks(state.socialUrl, park, ride, posted, actual, factor);
+      showPermalink(state.socialUrl);
     }
   }catch(e){
     console.log('Receipt worker unavailable, local receipt only');
