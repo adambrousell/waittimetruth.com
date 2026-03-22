@@ -687,121 +687,150 @@ function generateCanvas({park,ride,posted,actual,factor,diff,verdictClass,isOff,
   const W=1080,H=1920;
   ctx.clearRect(0,0,W,H);
 
-  // ── Background gradient ──
-  const grad=ctx.createLinearGradient(0,0,0,H);
-  grad.addColorStop(0,'#0a0a0a');
-  grad.addColorStop(0.4,'#111');
-  grad.addColorStop(1,'#0a0a0a');
-  ctx.fillStyle=grad;ctx.fillRect(0,0,W,H);
+  const red='#ff3b30',green='#22d87c',amber='#f5a623';
+  const accent = isOff?red:isLonger?red:green;
+  const isGood = !isOff&&!isLonger&&posted&&actual;
 
-  // ── Subtle grid lines ──
-  ctx.strokeStyle='#1a1a1a';ctx.lineWidth=1;
-  for(let y=0;y<H;y+=40){ctx.globalAlpha=0.3;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  // ── Deep background with radial glow ──
+  ctx.fillStyle='#060608';ctx.fillRect(0,0,W,H);
+  const glow=ctx.createRadialGradient(W/2,H*0.35,50,W/2,H*0.35,600);
+  glow.addColorStop(0, isOff?'rgba(255,59,48,0.15)':isLonger?'rgba(255,59,48,0.12)':'rgba(34,216,124,0.12)');
+  glow.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+
+  // ── Noise texture ──
+  ctx.globalAlpha=0.03;
+  for(let i=0;i<8000;i++){ctx.fillStyle=`rgb(${Math.random()*60},${Math.random()*60},${Math.random()*60})`;ctx.fillRect(Math.random()*W,Math.random()*H,1,1);}
   ctx.globalAlpha=1;
 
-  // ── Top accent bar ──
-  const accentColor = isOff?'#ff3b30':isLonger?'#ff3b30':'#22d87c';
-  ctx.fillStyle=accentColor;ctx.fillRect(0,0,W,8);
+  // ── Top bar ──
+  ctx.fillStyle=accent;ctx.fillRect(0,0,W,6);
 
-  // ── Logo ──
-  ctx.textAlign='center';
-  ctx.font='bold 28px sans-serif';ctx.fillStyle='#555';
-  ctx.fillText('WAITTIMETRUTH.COM',W/2,80);
+  // ── Logo badge ──
+  ctx.fillStyle='rgba(255,255,255,0.06)';
+  roundRect(ctx,W/2-180,40,360,44,22);ctx.fill();
+  ctx.fillStyle='#666';ctx.font='600 16px sans-serif';ctx.textAlign='center';
+  ctx.fillText('WAITTIMETRUTH.COM',W/2,68);
 
-  // ── Big emoji ──
-  ctx.font='120px sans-serif';
-  ctx.fillText(isOff?'🚨':isLonger?'⚠️':'✅',W/2,240);
+  // ── Giant factor number (the hero) ──
+  if(posted&&actual&&factor&&factor!=='\u2014'){
+    const displayFactor = isLonger ? (actual/posted).toFixed(1) : factor;
+    ctx.fillStyle=accent;
+    ctx.font='bold 220px sans-serif';ctx.textAlign='center';
+    ctx.fillText(displayFactor+'\u00d7',W/2,380);
 
-  // ── Verdict banner ──
-  const verdictY=320;
-  ctx.fillStyle=accentColor;
-  roundRect(ctx,60,verdictY-50,W-120,120,16);ctx.fill();
-  ctx.fillStyle=isOff||isLonger?'#fff':'#0a0a0a';
-  ctx.font='bold 48px sans-serif';
-  if(isOff) ctx.fillText('SIGNIFICANTLY OFF',W/2,verdictY+5);
-  else if(isLonger) ctx.fillText('LONGER THAN POSTED',W/2,verdictY+5);
-  else ctx.fillText('ACCURATE ✓',W/2,verdictY+5);
-  // Sub text
-  if(isOff||isLonger){
-    ctx.font='bold 30px sans-serif';
-    const gap=isOff?diff:(actual-posted);
-    ctx.fillText(gap+' MINUTES '+(isOff?'OVERSTATED':'UNDERSTATED'),W/2,verdictY+45);
+    // Glow behind number
+    ctx.shadowColor=accent;ctx.shadowBlur=80;
+    ctx.fillText(displayFactor+'\u00d7',W/2,380);
+    ctx.shadowBlur=0;
+
+    // Label
+    ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='600 22px sans-serif';
+    ctx.fillText(isOff?'POSTED \u00f7 ACTUAL':isLonger?'ACTUAL \u00f7 POSTED':'POSTED \u00f7 ACTUAL',W/2,420);
+  } else {
+    ctx.fillStyle=accent;ctx.font='bold 140px sans-serif';ctx.textAlign='center';
+    ctx.fillText(actual||'?',W/2,350);
+    ctx.fillStyle='rgba(255,255,255,0.4)';ctx.font='600 28px sans-serif';
+    ctx.fillText('MINUTES ACTUAL WAIT',W/2,400);
   }
 
-  // ── Ride name (big) ──
-  ctx.fillStyle='#fff';ctx.font='bold 64px sans-serif';
-  ctx.fillText(ride.length>24?ride.substring(0,24)+'…':ride,W/2,540);
+  // ── Verdict pill ──
+  const pillW=isOff?520:isLonger?560:320;
+  ctx.fillStyle=accent;
+  roundRect(ctx,W/2-pillW/2,470,pillW,60,30);ctx.fill();
+  ctx.fillStyle=isGood?'#060608':'#fff';ctx.font='bold 26px sans-serif';
+  const verdictLabel = isOff?'SIGNIFICANTLY OVERSTATED':isLonger?'LONGER THAN POSTED':'ACCURATE';
+  ctx.fillText(verdictLabel,W/2,508);
+
+  // ── Ride name ──
+  ctx.fillStyle='#fff';
+  const rideSize = ride.length>20?48:ride.length>14?56:64;
+  ctx.font='bold '+rideSize+'px sans-serif';
+  ctx.fillText(ride.length>28?ride.substring(0,28)+'…':ride,W/2,620);
 
   // ── Park name ──
-  ctx.fillStyle='#888';ctx.font='28px sans-serif';
-  ctx.fillText(park,W/2,590);
+  ctx.fillStyle='rgba(255,255,255,0.35)';ctx.font='500 26px sans-serif';
+  ctx.fillText(park,W/2,665);
 
-  // ── Divider ──
-  ctx.strokeStyle='#2a2a2a';ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(120,640);ctx.lineTo(W-120,640);ctx.stroke();
+  // ── Comparison boxes ──
+  const boxY=730;const boxW=420;const boxH=200;const gap=40;
 
-  // ── Big numbers section ──
-  const numY=720;
+  // Posted box
+  ctx.fillStyle='rgba(255,255,255,0.04)';
+  roundRect(ctx,W/2-boxW-gap/2,boxY,boxW,boxH,16);ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,0.08)';ctx.lineWidth=1;
+  roundRect(ctx,W/2-boxW-gap/2,boxY,boxW,boxH,16);ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,0.3)';ctx.font='600 18px sans-serif';
+  ctx.fillText('POSTED',W/2-gap/2-boxW/2,boxY+45);
+  ctx.fillStyle=amber;ctx.font='bold 90px sans-serif';
+  ctx.fillText(posted?posted+'':'—',W/2-gap/2-boxW/2,boxY+140);
+  ctx.fillStyle='rgba(255,255,255,0.25)';ctx.font='500 22px sans-serif';
+  ctx.fillText('min',W/2-gap/2-boxW/2,boxY+175);
 
-  // Posted
-  ctx.fillStyle='#555';ctx.font='22px monospace';
-  ctx.fillText('POSTED WAIT',W/4,numY);
-  ctx.fillStyle='#f5a623';ctx.font='bold 80px sans-serif';
-  ctx.fillText(posted?posted+'':'-',W/4,numY+90);
-  ctx.fillStyle='#666';ctx.font='24px sans-serif';
-  ctx.fillText('min',W/4,numY+125);
+  // Actual box
+  ctx.fillStyle='rgba(255,255,255,0.04)';
+  roundRect(ctx,W/2+gap/2,boxY,boxW,boxH,16);ctx.fill();
+  ctx.strokeStyle='rgba(255,255,255,0.08)';ctx.lineWidth=1;
+  roundRect(ctx,W/2+gap/2,boxY,boxW,boxH,16);ctx.stroke();
+  ctx.fillStyle='rgba(255,255,255,0.3)';ctx.font='600 18px sans-serif';
+  ctx.fillText('ACTUAL',W/2+gap/2+boxW/2,boxY+45);
+  ctx.fillStyle=isOff||isLonger?red:green;ctx.font='bold 90px sans-serif';
+  ctx.fillText(actual?actual+'':'—',W/2+gap/2+boxW/2,boxY+140);
+  ctx.fillStyle='rgba(255,255,255,0.25)';ctx.font='500 22px sans-serif';
+  ctx.fillText('min',W/2+gap/2+boxW/2,boxY+175);
 
-  // Actual
-  ctx.fillStyle='#555';ctx.font='22px monospace';
-  ctx.fillText('YOUR ACTUAL',W*3/4,numY);
-  ctx.fillStyle=isOff||isLonger?'#ff3b30':'#22d87c';
-  ctx.font='bold 80px sans-serif';
-  ctx.fillText(actual?actual+'':'-',W*3/4,numY+90);
-  ctx.fillStyle='#666';ctx.font='24px sans-serif';
-  ctx.fillText('min',W*3/4,numY+125);
+  // ── Arrow between boxes ──
+  ctx.fillStyle='rgba(255,255,255,0.15)';ctx.font='bold 40px sans-serif';
+  ctx.fillText('\u2192',W/2,boxY+110);
 
-  // VS divider
-  ctx.fillStyle='#333';ctx.font='bold 36px sans-serif';
-  ctx.fillText('vs',W/2,numY+75);
-
-  // ── Inflation factor (huge) ──
-  if(factor&&factor!=='\u2014'){
-    ctx.fillStyle='#2a2a2a';
-    roundRect(ctx,120,930,W-240,180,16);ctx.fill();
-    ctx.fillStyle=isOff?'#ff3b30':isLonger?'#ff3b30':'#22d87c';
-    ctx.font='bold 100px sans-serif';
-    ctx.fillText(factor+'\u00d7',W/2,1050);
-    ctx.fillStyle='#555';ctx.font='22px monospace';
-    ctx.fillText('POSTED \u00f7 ACTUAL RATIO',W/2,1100);
+  // ── Gap callout ──
+  if(posted&&actual){
+    const gapMin = Math.abs(posted-actual);
+    const gapText = isOff ? gapMin+' min overstated' : isLonger ? gapMin+' min understated' : 'Within accuracy range';
+    ctx.fillStyle='rgba(255,255,255,0.04)';
+    roundRect(ctx,140,boxY+boxH+30,W-280,56,28);ctx.fill();
+    ctx.fillStyle=accent;ctx.font='600 20px sans-serif';
+    ctx.fillText(isOff?'\u26a0 ':isLonger?'\u26a0 ':'\u2713 ',W/2-ctx.measureText(gapText).width/2-14,boxY+boxH+64);
+    ctx.fillText(gapText,W/2,boxY+boxH+64);
   }
 
-  // ── Dashed receipt line ──
-  ctx.setLineDash([8,8]);ctx.strokeStyle='#333';ctx.lineWidth=2;
-  ctx.beginPath();ctx.moveTo(80,1160);ctx.lineTo(W-80,1160);ctx.stroke();
-  ctx.setLineDash([]);
+  // ── Divider dots ──
+  const dotY=1090;
+  for(let x=200;x<W-200;x+=20){ctx.fillStyle='rgba(255,255,255,0.08)';ctx.beginPath();ctx.arc(x,dotY,2,0,Math.PI*2);ctx.fill();}
 
-  // ── Bottom section ──
-  ctx.fillStyle='#888';ctx.font='20px monospace';
-  ctx.fillText('📅 '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),W/2,1220);
+  // ── Date ──
+  ctx.fillStyle='rgba(255,255,255,0.25)';ctx.font='500 20px sans-serif';
+  ctx.fillText(new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}),W/2,1140);
 
-  // ── CTA bar ──
-  ctx.fillStyle='#22d87c';
-  roundRect(ctx,80,1300,W-160,100,12);ctx.fill();
-  ctx.fillStyle='#0a0a0a';ctx.font='bold 32px sans-serif';
-  ctx.fillText('Report yours → waittimetruth.com/report',W/2,1362);
+  // ── CTA section ──
+  // Big question
+  ctx.fillStyle='#fff';ctx.font='bold 44px sans-serif';
+  ctx.fillText('How accurate is',W/2,1260);
+  ctx.fillText('YOUR park?',W/2,1315);
 
-  // ── QR prompt ──
-  ctx.fillStyle='#555';ctx.font='20px monospace';
-  ctx.fillText('How accurate is YOUR park?',W/2,1460);
+  // CTA button
+  ctx.fillStyle=green;
+  roundRect(ctx,180,1370,W-360,90,45);ctx.fill();
+  ctx.fillStyle='#060608';ctx.font='bold 30px sans-serif';
+  ctx.fillText('Report yours \u2192 waittimetruth.com',W/2,1425);
 
-  // ── Branding footer ──
-  ctx.fillStyle='#333';ctx.font='18px monospace';
-  ctx.fillText('Powered by Queue-Times.com',W/2,H-180);
-  ctx.fillText('amusementrating.org · ratingvalue.org',W/2,H-150);
-  ctx.fillText('© 2026 Amusement Standards LLC',W/2,H-120);
+  // ── Cross-promo ──
+  ctx.fillStyle='rgba(255,255,255,0.06)';
+  roundRect(ctx,120,1510,W-240,120,12);ctx.fill();
+  ctx.fillStyle='rgba(255,255,255,0.3)';ctx.font='500 18px sans-serif';
+  ctx.fillText('Want the full ops audit? Dispatch, safety, staff, facility scoring',W/2,1555);
+  ctx.fillStyle='#22d87c';ctx.font='600 22px sans-serif';
+  ctx.fillText('amusementrating.org \u2192 Free, +50 XP bonus',W/2,1590);
+
+  // ── Footer ──
+  ctx.fillStyle='rgba(255,255,255,0.12)';ctx.font='400 16px sans-serif';
+  ctx.fillText('Powered by Queue-Times.com \u00b7 A RatingValue.org Project',W/2,H-100);
+  ctx.fillText('\u00a9 2026 Amusement Standards LLC \u00b7 Asbury Park, NJ',W/2,H-72);
+  ctx.fillStyle='rgba(255,255,255,0.08)';ctx.font='400 13px sans-serif';
+  ctx.fillText('Wait time data is self-reported. Ratios are mathematical comparisons, not findings of wrongdoing.',W/2,H-42);
 
   // ── Bottom accent bar ──
-  ctx.fillStyle=accentColor;ctx.fillRect(0,H-8,W,8);
+  ctx.fillStyle=accent;ctx.fillRect(0,H-6,W,6);
 }
 
 // Rounded rectangle helper
