@@ -614,13 +614,14 @@ function buildReceipt(){
     if(actual > posted && (actual-posted) > 5){
       verdict='\u26a0\ufe0f LONGER THAN POSTED';
       verdictClass='off';
-      factor=(posted/actual).toFixed(2);
+      factor=(actual/posted).toFixed(2); // flip: show how much longer you waited
     } else if(diff > 8){
       verdict='\ud83d\udcca SIGNIFICANTLY OFF \u2014 '+diff+' min gap';
       verdictClass='off';
     } else if(diff < -5){
       verdict='\u26a0\ufe0f LONGER THAN POSTED';
       verdictClass='off';
+      factor=(actual/posted).toFixed(2); // flip for understated
     } else {
       verdict='\u2713 ACCURATE';
       verdictClass='close';
@@ -629,14 +630,16 @@ function buildReceipt(){
     verdict='\ud83d\udccb REPORTED'; verdictClass='close'; factor='\u2014';
   }
 
+  const isOff = posted && actual && diff > 8;
+  const isLonger = posted && actual && actual > posted && (actual-posted) > 5;
+  const factorLabel = isLonger ? 'Actual\u00f7Posted Ratio' : 'Posted\u00f7Actual Ratio';
+
   document.getElementById('rcRide').textContent=ride;
   document.getElementById('rcPark').textContent=park;
   document.getElementById('rcPosted').textContent=posted?posted+' min':'Not recorded';
   document.getElementById('rcActual').textContent=actual+' min';
   document.getElementById('rcFactor').textContent=factor!==null&&factor!=='\u2014'?factor+'\u00d7':'\u2014';
-
-  const isOff = posted && actual && diff > 8;
-  const isLonger = posted && actual && actual > posted && (actual-posted) > 5;
+  document.querySelector('#rcFactor').closest('.receipt-row').querySelector('.receipt-label').textContent=factorLabel;
   document.getElementById('rcActual').className='receipt-value '+(isOff?'red':isLonger?'red':'green');
   document.getElementById('rcFactor').className='receipt-value '+(isOff?'red':isLonger?'red':'green');
   document.getElementById('rcVerdict').textContent=verdict;
