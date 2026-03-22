@@ -612,36 +612,36 @@ function buildReceipt(){
     const ratio = posted / actual;
     factor = ratio.toFixed(2);
     diff = posted - actual;
-    // Percentage-based thresholds
+
     if(ratio >= 1.5){
-      // Posted 50%+ higher than actual — significant inflation
       verdict='\ud83d\udcca SIGNIFICANTLY OVERSTATED \u2014 '+diff+' min gap';
       verdictClass='off';
     } else if(ratio >= 1.15){
-      // Posted 15-50% higher — moderate inflation
       verdict='\ud83d\udcca OVERSTATED \u2014 '+diff+' min gap';
-      verdictClass='off';
+      verdictClass='close'; // amber, not red
     } else if(ratio <= 0.67){
-      // Actual 50%+ longer than posted — significant understatement
-      verdict='\u26a0\ufe0f LONGER THAN POSTED';
+      verdict='\u26a0\ufe0f SIGNIFICANTLY UNDERSTATED';
       verdictClass='off';
       factor=(actual/posted).toFixed(2);
     } else if(ratio <= 0.85){
-      // Actual 15-50% longer — moderate understatement
       verdict='\u26a0\ufe0f LONGER THAN POSTED';
-      verdictClass='off';
+      verdictClass='close'; // amber, not red
       factor=(actual/posted).toFixed(2);
     } else {
-      // Within 15% either way — accurate
       verdict='\u2713 ACCURATE';
-      verdictClass='close';
+      verdictClass='honest';
     }
   } else {
     verdict='\ud83d\udccb REPORTED'; verdictClass='close'; factor='\u2014';
   }
 
-  const isOff = posted && actual && (posted/actual) >= 1.15;
-  const isLonger = posted && actual && (posted/actual) <= 0.85;
+  const ratio = (posted&&actual) ? posted/actual : 1;
+  const isSigOff = ratio >= 1.5;
+  const isModOff = ratio >= 1.15 && ratio < 1.5;
+  const isOff = ratio >= 1.15;
+  const isSigLonger = ratio <= 0.67;
+  const isModLonger = ratio <= 0.85 && ratio > 0.67;
+  const isLonger = ratio <= 0.85;
   const factorLabel = isLonger ? 'Actual\u00f7Posted Ratio' : 'Posted\u00f7Actual Ratio';
 
   document.getElementById('rcRide').textContent=ride;
@@ -650,8 +650,8 @@ function buildReceipt(){
   document.getElementById('rcActual').textContent=actual+' min';
   document.getElementById('rcFactor').textContent=factor!==null&&factor!=='\u2014'?factor+'\u00d7':'\u2014';
   document.querySelector('#rcFactor').closest('.receipt-row').querySelector('.receipt-label').textContent=factorLabel;
-  document.getElementById('rcActual').className='receipt-value '+(isOff?'red':isLonger?'red':'green');
-  document.getElementById('rcFactor').className='receipt-value '+(isOff?'red':isLonger?'red':'green');
+  document.getElementById('rcActual').className='receipt-value '+(isSigOff||isSigLonger?'red':isModOff||isModLonger?'amber':'green');
+  document.getElementById('rcFactor').className='receipt-value '+(isSigOff||isSigLonger?'red':isModOff||isModLonger?'amber':'green');
   document.getElementById('rcVerdict').textContent=verdict;
 
   const now=new Date();
@@ -661,21 +661,23 @@ function buildReceipt(){
   document.getElementById('rcNum').textContent=state.reportNum;
 
   const banner=document.getElementById('verdictBanner');
-  banner.className='verdict-banner '+verdictClass;
-  if(isOff) banner.textContent='SIGNIFICANTLY OFF \u2014 '+diff+' MIN OVERSTATED';
-  else if(isLonger) banner.textContent='LONGER THAN POSTED \u2014 '+(actual-posted)+' MIN UNDERSTATED';
-  else if(posted&&actual) banner.textContent='ACCURATE \u2713';
-  else banner.textContent='WAIT TIME REPORTED';
+  if(isSigOff) { banner.className='verdict-banner off'; banner.textContent='SIGNIFICANTLY OFF \u2014 '+diff+' MIN OVERSTATED'; }
+  else if(isModOff) { banner.className='verdict-banner close'; banner.textContent='OVERSTATED \u2014 '+diff+' MIN GAP'; }
+  else if(isSigLonger) { banner.className='verdict-banner off'; banner.textContent='SIGNIFICANTLY UNDERSTATED \u2014 '+(actual-posted)+' MIN'; }
+  else if(isModLonger) { banner.className='verdict-banner close'; banner.textContent='LONGER THAN POSTED \u2014 '+(actual-posted)+' MIN'; }
+  else if(posted&&actual) { banner.className='verdict-banner honest'; banner.textContent='ACCURATE \u2713'; }
+  else { banner.className='verdict-banner close'; banner.textContent='WAIT TIME REPORTED'; }
 
   let tweet='';
   const fallbackUrl = 'waittimetruth.com/report';
-  if(posted&&actual&&diff>5) tweet=`${park} posted ${posted} min for ${ride}. I waited ${actual}. That's ${factor}\u00d7 off. How accurate is your park?\n${fallbackUrl} #themepark #waittime`;
-  else if(posted&&actual&&isLonger) tweet=`${ride} at ${park} \u2014 posted ${posted} min but I waited ${actual}.\n${fallbackUrl}`;
+  if(isSigOff) tweet=`${park} posted ${posted} min for ${ride}. I waited ${actual}. That's ${factor}\u00d7 off. How accurate is your park?\n${fallbackUrl} #themepark #waittime`;
+  else if(isOff) tweet=`${park} posted ${posted} min for ${ride}. I waited ${actual}. ${diff} min overstated.\n${fallbackUrl} #themepark`;
+  else if(isLonger) tweet=`${ride} at ${park} \u2014 posted ${posted} min but I waited ${actual}.\n${fallbackUrl}`;
   else tweet=`Just checked wait time accuracy at ${park} on waittimetruth.com \u2014 how accurate is your park?\n${fallbackUrl}`;
   document.getElementById('tweetBtn').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(tweet);
   document.getElementById('fbBtn').href='https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://'+fallbackUrl);
 
-  state._receiptData={park,ride,posted,actual,factor,diff,verdict,verdictClass,isOff,isLonger};
+  state._receiptData={park,ride,posted,actual,factor,diff,verdict,verdictClass,isOff,isLonger,isSigOff,isModOff,isSigLonger,isModLonger};
   state.receiptUrl = null; // will be set by submitReport callback
 
   const arHeadline=document.getElementById('arCtaHeadline');
