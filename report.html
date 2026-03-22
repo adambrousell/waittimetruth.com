@@ -609,20 +609,30 @@ function buildReceipt(){
   let factor=null,diff=null,verdict='',verdictClass='';
 
   if(posted && actual){
-    factor=(posted/actual).toFixed(2);
-    diff=posted-actual;
-    if(actual > posted && (actual-posted) > 5){
+    const ratio = posted / actual;
+    factor = ratio.toFixed(2);
+    diff = posted - actual;
+    // Percentage-based thresholds
+    if(ratio >= 1.5){
+      // Posted 50%+ higher than actual — significant inflation
+      verdict='\ud83d\udcca SIGNIFICANTLY OVERSTATED \u2014 '+diff+' min gap';
+      verdictClass='off';
+    } else if(ratio >= 1.15){
+      // Posted 15-50% higher — moderate inflation
+      verdict='\ud83d\udcca OVERSTATED \u2014 '+diff+' min gap';
+      verdictClass='off';
+    } else if(ratio <= 0.67){
+      // Actual 50%+ longer than posted — significant understatement
       verdict='\u26a0\ufe0f LONGER THAN POSTED';
       verdictClass='off';
-      factor=(actual/posted).toFixed(2); // flip: show how much longer you waited
-    } else if(diff > 8){
-      verdict='\ud83d\udcca SIGNIFICANTLY OFF \u2014 '+diff+' min gap';
-      verdictClass='off';
-    } else if(diff < -5){
+      factor=(actual/posted).toFixed(2);
+    } else if(ratio <= 0.85){
+      // Actual 15-50% longer — moderate understatement
       verdict='\u26a0\ufe0f LONGER THAN POSTED';
       verdictClass='off';
-      factor=(actual/posted).toFixed(2); // flip for understated
+      factor=(actual/posted).toFixed(2);
     } else {
+      // Within 15% either way — accurate
       verdict='\u2713 ACCURATE';
       verdictClass='close';
     }
@@ -630,8 +640,8 @@ function buildReceipt(){
     verdict='\ud83d\udccb REPORTED'; verdictClass='close'; factor='\u2014';
   }
 
-  const isOff = posted && actual && diff > 8;
-  const isLonger = posted && actual && actual > posted && (actual-posted) > 5;
+  const isOff = posted && actual && (posted/actual) >= 1.15;
+  const isLonger = posted && actual && (posted/actual) <= 0.85;
   const factorLabel = isLonger ? 'Actual\u00f7Posted Ratio' : 'Posted\u00f7Actual Ratio';
 
   document.getElementById('rcRide').textContent=ride;
