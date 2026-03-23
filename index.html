@@ -1,1 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Theme Park Wait Time Accuracy Tracker | WaitTimeTruth.com</title>
+    <meta name="description" content="Posted wait times at Disney, Universal, Six Flags, and Cedar Point often don't match reality. See the data, report your actual wait, and find out if Lightning Lane is worth it." />
+    <meta name="keywords" content="theme park wait times, wait time accuracy, are wait times real, Disney wait time inflation, Universal Express Pass worth it, Lightning Lane worth it, theme park queue times, posted wait time vs actual, ride wait time tracker, are posted wait times accurate" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://waittimetruth.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Did the Park Get It Wrong? — Wait Time Accuracy Tracker" />
+    <meta property="og:description" content="Posted wait times don't always match reality. See how accurate 20+ major parks are and report your actual wait." />
+    <meta property="og:url" content="https://waittimetruth.com/" />
+    <meta property="og:image" content="https://waittimetruth.com/og-home.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="WaitTimeTruth.com — Theme park wait time accuracy tracker showing average 1.58x posted-to-actual ratio across 20 major US parks" />
+    <meta property="og:site_name" content="WaitTimeTruth.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Did the Park Get It Wrong? — Wait Time Accuracy" />
+    <meta name="twitter:description" content="Posted wait times often don't match reality. We're tracking accuracy at 20+ major parks." />
+    <meta name="twitter:image" content="https://waittimetruth.com/og-home.png" />
+    <meta name="twitter:image:alt" content="WaitTimeTruth.com — Theme park wait time accuracy data" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"WaitTimeTruth","url":"https://waittimetruth.com","logo":"https://waittimetruth.com/logo.png","description":"Consumer platform tracking theme park wait time accuracy.","parentOrganization":{"@type":"Organization","name":"RatingValue.org","url":"https://ratingvalue.org"},"sameAs":["https://amusementrating.org","https://ratingvalue.org"]}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"WaitTimeTruth","url":"https://waittimetruth.com","potentialAction":{"@type":"SearchAction","target":"https://waittimetruth.com/report?park={search_term_string}","query-input":"required name=search_term_string"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Theme Park Wait Time Accuracy Rankings","description":"Ranked list of major U.S. theme parks by posted-to-actual wait time ratio, from most inflated to most accurate.","url":"https://waittimetruth.com/#leaderboard","numberOfItems":12,"itemListElement":[{"@type":"ListItem","position":1,"name":"Epic Universe","url":"https://waittimetruth.com/parks/epic-universe","description":"1.79x posted-to-actual ratio — Significantly Off"},{"@type":"ListItem","position":2,"name":"Islands of Adventure","url":"https://waittimetruth.com/parks/islands-of-adventure","description":"1.68x posted-to-actual ratio — Significantly Off"},{"@type":"ListItem","position":3,"name":"Universal Studios Florida","url":"https://waittimetruth.com/parks/universal-studios-florida","description":"1.64x posted-to-actual ratio — Significantly Off"},{"@type":"ListItem","position":4,"name":"Six Flags Great Adventure","url":"https://waittimetruth.com/parks/six-flags-great-adventure","description":"1.61x posted-to-actual ratio — Significantly Off"},{"@type":"ListItem","position":5,"name":"Magic Kingdom","url":"https://waittimetruth.com/parks/magic-kingdom","description":"1.48x posted-to-actual ratio — Moderately Off"},{"@type":"ListItem","position":6,"name":"Hollywood Studios","url":"https://waittimetruth.com/parks/hollywood-studios","description":"1.45x posted-to-actual ratio — Moderately Off"},{"@type":"ListItem","position":7,"name":"Six Flags Magic Mountain","url":"https://waittimetruth.com/parks/six-flags-magic-mountain","description":"1.42x posted-to-actual ratio — Moderately Off"},{"@type":"ListItem","position":8,"name":"Disneyland","url":"https://waittimetruth.com/parks/disneyland","description":"1.39x posted-to-actual ratio — Moderately Off"},{"@type":"ListItem","position":9,"name":"Busch Gardens Tampa","url":"https://waittimetruth.com/parks/busch-gardens-tampa","description":"1.36x posted-to-actual ratio — Moderately Off"},{"@type":"ListItem","position":10,"name":"Cedar Point","url":"https://waittimetruth.com/parks/cedar-point","description":"1.12x posted-to-actual ratio — Accurate"},{"@type":"ListItem","position":11,"name":"Dollywood","url":"https://waittimetruth.com/parks/dollywood","description":"1.09x posted-to-actual ratio — Accurate"},{"@type":"ListItem","position":12,"name":"Hersheypark","url":"https://waittimetruth.com/parks/hersheypark","description":"1.07x posted-to-actual ratio — Accurate"}]}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet" /></noscript>
+    <style>
+/* ══════ TOKENS ══════ */
+/* Font fallback stacks match Bebas Neue, DM Mono, DM Sans metrics to reduce CLS */
+:root {
+  --black:#0a0a0a;--dark:#111111;--card:#191919;--border:#222222;--border2:#2a2a2a;
+  --muted:#555555;--dim:#777777;--text:#e8e8e8;--white:#ffffff;
+  --red:#ff3b30;--red-dim:#3a1512;--red-mid:#7a1a15;
+  --green:#22d87c;--green-dim:#0d3a22;
+  --amber:#f5a623;--amber-dim:#3a2a0a;
+  --fd:'Bebas Neue','Arial Narrow',sans-serif;--fm:'DM Mono','Courier New',monospace;--fb:'DM Sans','Helvetica Neue',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;overflow-x:hidden;}
+body{background:var(--black);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.6;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4;}
+a{color:inherit;text-decoration:none;}
 
+/* ══════ NAV ══════ */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,10,0.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 16px;height:52px;}
+.nav-logo{font-family:var(--fd);font-size:22px;color:var(--white);white-space:nowrap;}
+.nav-logo span{color:var(--red);}
+.nav-links{display:flex;gap:16px;align-items:center;}
+.nav-links a{font-family:var(--fm);font-size:11px;color:var(--dim);letter-spacing:0.08em;text-transform:uppercase;transition:color 0.15s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{font-family:var(--fd);font-size:16px;background:var(--red);color:var(--white);padding:7px 18px;border:none;cursor:pointer;letter-spacing:0.04em;transition:background 0.15s;text-decoration:none;display:inline-block;white-space:nowrap;}
+.nav-cta:hover{background:#e02d22;}
+
+/* Mobile hamburger */
+.nav-hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:36px;height:36px;cursor:pointer;padding:4px;background:none;border:none;}
+.nav-hamburger span{display:block;height:2px;background:var(--dim);border-radius:2px;transition:all 0.2s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+.nav-mobile-menu{display:none;position:fixed;top:52px;left:0;right:0;background:rgba(10,10,10,0.98);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);z-index:99;padding:16px 0;flex-direction:column;}
+.nav-mobile-menu.open{display:flex;}
+.nav-mobile-menu a{font-family:var(--fm);font-size:12px;color:var(--dim);letter-spacing:0.1em;text-transform:uppercase;padding:14px 20px;border-bottom:1px solid var(--border);transition:color 0.15s;}
+.nav-mobile-menu a:last-child{border-bottom:none;}
+.nav-mobile-menu a:hover{color:var(--text);}
+.nav-mobile-menu .nav-cta{font-family:var(--fd);font-size:18px;background:var(--red);color:var(--white);letter-spacing:0.04em;margin:12px 16px 4px;border:none;text-align:center;display:block;padding:12px 20px;}
+
+/* ══════ HERO ══════ */
+.hero{position:relative;z-index:1;text-align:center;padding:72px 24px 48px;max-width:740px;margin:0 auto;}
+.hero-eyebrow{font-family:var(--fm);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';height:1px;width:32px;background:var(--red-mid);}
+.hero h1{font-family:var(--fd);font-size:clamp(52px,10vw,96px);line-height:0.92;letter-spacing:0.02em;color:var(--white);margin-bottom:24px;}
+.hero h1 em{font-style:normal;color:var(--red);display:block;}
+.hero-sub{font-size:17px;color:var(--dim);max-width:540px;margin:0 auto 40px;line-height:1.65;}
+.hero-cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.cta-primary{font-family:var(--fd);font-size:20px;background:var(--red);color:var(--white);padding:14px 32px;letter-spacing:0.04em;border:none;cursor:pointer;transition:background 0.15s;text-decoration:none;display:inline-block;}
+.cta-primary:hover{background:#e02d22;}
+.cta-secondary{font-family:var(--fm);font-size:12px;color:var(--dim);border:1px solid var(--border2);padding:14px 24px;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.15s;display:inline-flex;align-items:center;gap:6px;}
+.cta-secondary:hover{color:var(--text);border-color:#444;}
+
+/* ══════ PROOF BAR ══════ */
+.proof-bar{position:relative;z-index:1;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--dark);display:flex;justify-content:center;gap:48px;padding:16px 24px;flex-wrap:wrap;}
+.proof-item{text-align:center;}
+.proof-num{font-family:var(--fd);font-size:32px;color:var(--red);line-height:1;}
+.proof-label{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
+
+/* ══════ TICKER ══════ */
+.ticker-wrap{overflow:hidden;max-width:100vw;border-bottom:1px solid var(--border);background:var(--black);padding:10px 0;position:relative;z-index:1;}
+.ticker-track{display:flex;animation:ticker 35s linear infinite;width:max-content;}
+.ticker-item{font-family:var(--fm);font-size:11px;letter-spacing:0.04em;padding:0 28px;white-space:nowrap;color:var(--muted);border-right:1px solid var(--border);}
+.ticker-item .label{color:var(--text);}
+.ticker-item .gap-red{color:var(--red);font-weight:500;}
+.ticker-item .gap-green{color:var(--green);}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ══════ SECTION ══════ */
+.section{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:72px 24px;}
+.section-wide{max-width:1100px;}
+.section-eyebrow{font-family:var(--fm);font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:12px;}
+.section-eyebrow::before{content:'// ';opacity:0.5;}
+h2{font-family:var(--fd);font-size:clamp(36px,6vw,56px);line-height:0.95;letter-spacing:0.02em;color:var(--white);margin-bottom:16px;}
+h2 .red{color:var(--red);}
+h2 .stroke{-webkit-text-stroke:1px var(--white);color:transparent;}
+h3{font-family:var(--fb);font-size:16px;font-weight:700;color:var(--white);}
+.section-sub{font-size:16px;color:var(--dim);max-width:600px;line-height:1.65;margin-bottom:40px;}
+
+/* ══════ LEADERBOARD ══════ */
+.leaderboard{border:1px solid var(--border);background:var(--card);overflow:hidden;}
+.lb-header{display:grid;grid-template-columns:40px 1fr 80px 100px 130px;gap:0;padding:12px 20px;background:var(--dark);border-bottom:1px solid var(--border);font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
+.lb-row{display:grid;grid-template-columns:40px 1fr 80px 100px 130px;gap:0;padding:14px 20px;border-bottom:1px solid var(--border);align-items:center;transition:background 0.1s;cursor:pointer;text-decoration:none;}
+.lb-row:hover{background:#1a1a1a;}
+.lb-row:last-of-type{border-bottom:none;}
+.lb-rank{font-family:var(--fd);font-size:22px;color:var(--muted);}
+.lb-rank.top3{color:var(--red);}
+.lb-park{font-family:var(--fb);font-size:14px;color:var(--text);font-weight:500;}
+.lb-park-sub{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.06em;}
+.lb-val{font-family:var(--fd);font-size:22px;text-align:right;}
+.lb-factor-red{color:var(--red);}
+.lb-factor-amber{color:var(--amber);}
+.lb-factor-green{color:var(--green);}
+.lb-reports{font-family:var(--fm);font-size:11px;color:var(--muted);text-align:right;}
+.lb-tag{font-family:var(--fm);font-size:9px;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px;text-align:center;width:fit-content;justify-self:end;}
+.lb-tag.off{background:rgba(255,59,48,0.12);color:var(--red);}
+.lb-tag.inflated{background:rgba(245,166,35,0.12);color:var(--amber);}
+.lb-tag.accurate{background:rgba(34,216,124,0.12);color:var(--green);}
+.lb-footer{padding:14px 20px;background:var(--dark);border-top:1px solid var(--border);font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.06em;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.lb-footer a{color:var(--red);}
+.lb-footer a:hover{color:#ff5c52;}
+.lb-updated{font-family:var(--fm);font-size:10px;color:var(--muted);letter-spacing:0.06em;margin-top:10px;}
+
+/* ══════ HOW IT WORKS ══════ */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);}
+.how-card{background:var(--card);padding:36px 28px;transition:background 0.15s;}
+.how-card:hover{background:#1e1e1e;}
+.how-num{font-family:var(--fd);font-size:64px;color:var(--border2);line-height:1;margin-bottom:12px;transition:color 0.15s;}
+.how-card:hover .how-num{color:var(--red);}
+.how-card h3{font-family:var(--fm);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);margin-bottom:10px;font-weight:500;}
+.how-text{font-size:14px;color:var(--dim);line-height:1.6;}
+
+/* ══════ REPORT CTA ══════ */
+.report-cta{background:var(--red-dim);border:1px solid rgba(255,59,48,0.25);padding:48px 40px;text-align:center;}
+.report-cta h2{margin-bottom:12px;}
+.report-cta p{color:var(--dim);max-width:500px;margin:0 auto 28px;line-height:1.6;}
+
+/* ══════ FAQ ══════ */
+.faq-list{max-width:700px;}
+.faq-item{border-bottom:1px solid var(--border);padding:20px 0;}
+.faq-item h3{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-weight:700;}
+.faq-item h3::after{content:'+';font-family:var(--fm);font-size:18px;color:var(--red);flex-shrink:0;transition:transform 0.2s;}
+.faq-item.open h3::after{content:'\2212';}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease;font-size:14px;color:var(--dim);line-height:1.7;}
+.faq-item.open .faq-a{max-height:500px;padding-top:14px;}
+
+/* ══════ AR CTA ══════ */
+.ar-block{background:linear-gradient(135deg,#0f1f0f 0%,#0a1a0a 100%);border:1px solid rgba(34,216,124,0.2);padding:48px 40px;text-align:center;}
+.ar-block .section-eyebrow{color:var(--green);}
+.ar-block .section-eyebrow::before{content:'// ';opacity:0.5;}
+.ar-block h2 .green{color:var(--green);}
+.ar-block p{color:var(--dim);max-width:520px;margin:0 auto 24px;line-height:1.65;}
+.ar-xp{display:inline-flex;align-items:center;gap:6px;background:rgba(34,216,124,0.1);border:1px solid rgba(34,216,124,0.2);border-radius:100px;padding:6px 14px;font-family:var(--fm);font-size:11px;color:var(--green);letter-spacing:0.06em;margin-bottom:20px;}
+.cta-green{display:inline-block;font-family:var(--fd);font-size:20px;background:var(--green);color:var(--black);padding:14px 32px;letter-spacing:0.04em;transition:background 0.15s;}
+.cta-green:hover{background:#1bc46d;}
+
+/* ══════ FOOTER ══════ */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:28px 24px;text-align:center;font-family:var(--fm);font-size:10px;letter-spacing:0.06em;color:var(--muted);line-height:2.2;}
+footer a{color:var(--muted);transition:color 0.15s;}
+footer a:hover{color:var(--dim);}
+
+/* ══════ UTILS ══════ */
+.divider{border-top:1px solid var(--border);max-width:960px;margin:0 auto;}
+.divider-full{border-top:1px solid var(--border);}
+
+/* ══════════════════════════════
+   RESPONSIVE — TABLET (<=768px)
+   ══════════════════════════════ */
+@media(max-width:768px){
+  /* Nav: hide text links, show hamburger */
+  .nav-links{display:none;}
+  .nav-hamburger{display:flex;}
+
+  /* Hero */
+  .hero{padding:48px 20px 36px;}
+  .hero-sub{font-size:15px;}
+  .hero-cta-row{flex-direction:column;align-items:center;}
+  .cta-primary,.cta-secondary{width:100%;max-width:340px;text-align:center;justify-content:center;}
+
+  /* Proof bar: 2x2 grid */
+  .proof-bar{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;}
+  .proof-item{padding:16px 12px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .proof-item:nth-child(2n){border-right:none;}
+  .proof-item:nth-child(3),.proof-item:nth-child(4){border-bottom:none;}
+  .proof-num{font-size:28px;}
+
+  /* Leaderboard: hide Reports col */
+  .lb-header{grid-template-columns:32px 1fr 72px 120px;padding:10px 14px;}
+  .lb-row{grid-template-columns:32px 1fr 72px 120px;padding:12px 14px;}
+  .lb-header>:nth-child(4),.lb-row>:nth-child(4){display:none;}
+  .lb-val{font-size:18px;}
+  .lb-rank{font-size:18px;}
+
+  /* How it works: single column */
+  .how-grid{grid-template-columns:1fr;}
+
+  /* CTA blocks */
+  .report-cta,.ar-block{padding:36px 20px;}
+
+  /* Section padding */
+  .section{padding:48px 16px;}
+}
+
+/* ══════════════════════════════
+   RESPONSIVE — MOBILE (<=480px)
+   ══════════════════════════════ */
+@media(max-width:480px){
+  /* Nav */
+  .nav-logo{font-size:19px;}
+
+  /* Hero */
+  .hero{padding:36px 16px 28px;}
+  .hero-eyebrow{font-size:10px;}
+  .hero h1{font-size:clamp(44px,13vw,72px);}
+  .hero-sub{font-size:14px;}
+
+  /* Proof bar: tighter */
+  .proof-num{font-size:24px;}
+  .proof-label{font-size:9px;}
+
+  /* Leaderboard: rank + park + ratio only */
+  .lb-header{grid-template-columns:28px 1fr 70px;padding:10px 12px;}
+  .lb-row{grid-template-columns:28px 1fr 70px;padding:12px 12px;}
+  .lb-header>:nth-child(4),.lb-row>:nth-child(4){display:none;}
+  .lb-header>:nth-child(5),.lb-row>:nth-child(5){display:none;}
+  .lb-park{font-size:13px;}
+  .lb-park-sub{font-size:9px;}
+  .lb-val{font-size:17px;}
+  .lb-rank{font-size:17px;}
+
+  /* Leaderboard footer: stack */
+  .lb-footer{flex-direction:column;align-items:flex-start;gap:6px;}
+
+  /* How cards */
+  .how-card{padding:24px 20px;}
+  .how-num{font-size:48px;}
+
+  /* CTA blocks */
+  .report-cta,.ar-block{padding:28px 16px;}
+  .report-cta h2,.ar-block h2{font-size:clamp(28px,8vw,42px);}
+
+  /* Full-width CTAs */
+  .cta-primary,.cta-green{width:100%;text-align:center;}
+
+  /* Section */
+  .section{padding:36px 16px;}
+
+  /* FAQ */
+  .faq-item h3{font-size:14px;}
+
+  /* Footer */
+  footer{font-size:9px;line-height:2;}
+}
+    </style>
+  </head>
+  <body>
+    <!-- ══════ NAV ══════ -->
+    <nav aria-label="Main navigation">
+      <a href="/" class="nav-logo" aria-label="WaitTimeTruth home">WaitTime<span>Truth</span></a>
+      <!-- Desktop links -->
+      <div class="nav-links">
+        <a href="#leaderboard">Parks</a>
+        <a href="/methodology">Methodology</a>
+        <a href="/about">About</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating ↗</a>
+        <a href="/report.html" class="nav-cta">Report Your Wait</a>
+      </div>
+      <!-- Mobile hamburger button -->
+      <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false" id="navHamburger">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <!-- Mobile dropdown menu -->
+    <div class="nav-mobile-menu" id="navMobileMenu" role="navigation" aria-label="Mobile navigation">
+      <a href="#leaderboard">Parks</a>
+      <a href="/methodology">Methodology</a>
+      <a href="/about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating ↗</a>
+      <a href="/report.html" class="nav-cta">Report Your Wait →</a>
+    </div>
+
+    <main>
+      <!-- ══════ HERO ══════ -->
+      <header class="hero">
+        <div class="hero-eyebrow">Wait Time Truth Project · Est. 2026</div>
+        <h1>Did the park<em>get it wrong?</em></h1>
+        <p class="hero-sub">
+          Posted wait times at major theme parks often don't match reality. We compare what the sign says against what guests actually experience at
+          <strong>Disney</strong>, <strong>Universal</strong>, <strong>Six Flags</strong>, <strong>Cedar Point</strong>, and 20+ major parks — so you can make better decisions about
+          <strong>Lightning Lane</strong>, <strong>Express Pass</strong>, and <strong>Virtual Queue</strong> purchases.
+        </p>
+        <div class="hero-cta-row">
+          <a href="/report.html" class="cta-primary">Report Your Wait Time →</a>
+          <a href="#leaderboard" class="cta-secondary">📊 See Park Accuracy Rankings</a>
+        </div>
+      </header>
+
+      <!-- ══════ SOCIAL PROOF ══════ -->
+      <section class="proof-bar" aria-label="Key statistics">
+        <div class="proof-item">
+          <div class="proof-num">1.58×</div>
+          <div class="proof-label">Avg Posted-to-Actual Ratio</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">20+</div>
+          <div class="proof-label">Major Parks Tracked</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num" id="reportCount">2,847</div>
+          <div class="proof-label">Guest Reports</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-num">38%</div>
+          <div class="proof-label">Avg Time Overstated</div>
+        </div>
+      </section>
+
+      <!-- ══════ TICKER ══════ -->
+      <div class="ticker-wrap" aria-hidden="true">
+        <div class="ticker-track">
+          <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× OFF</span></div>
+          <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× OFF</span></div>
+          <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adventure</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× OFF</span></div>
+          <div class="ticker-item">✅ <span class="label">Steel Vengeance · Cedar Point</span> — Posted <strong>55m</strong> · Actual <span class="gap-green">~52m</span> · <span class="gap-green">ACCURATE</span></div>
+          <div class="ticker-item">🎢 <span class="label">Kingda Ka · Six Flags Great Adventure</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× OFF</span></div>
+          <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">ACCURATE</span></div>
+          <div class="ticker-item">🎢 <span class="label">Velocicoaster · Islands of Adventure</span> — Posted <strong>80m</strong> · Actual <span class="gap-red">~50m</span> · <span class="gap-red">1.60× OFF</span></div>
+          <div class="ticker-item">🎢 <span class="label">Iron Gwazi · Busch Gardens Tampa</span> — Posted <strong>60m</strong> · Actual <span class="gap-red">~40m</span> · <span class="gap-red">1.50× OFF</span></div>
+          <!-- duplicate for seamless loop -->
+          <div class="ticker-item">🎢 <span class="label">Villain-Con · Epic Universe</span> — Posted <strong>75m</strong> · Actual <span class="gap-red">~42m</span> · <span class="gap-red">1.79× OFF</span></div>
+          <div class="ticker-item">🎢 <span class="label">Tron · Magic Kingdom</span> — Posted <strong>90m</strong> · Actual <span class="gap-red">~65m</span> · <span class="gap-red">1.38× OFF</span></div>
+          <div class="ticker-item">🎢 <span class="label">Hagrid's · Islands of Adventure</span> — Posted <strong>110m</strong> · Actual <span class="gap-red">~70m</span> · <span class="gap-red">1.57× OFF</span></div>
+          <div class="ticker-item">✅ <span class="label">Steel Vengeance · Cedar Point</span> — Posted <strong>55m</strong> · Actual <span class="gap-green">~52m</span> · <span class="gap-green">ACCURATE</span></div>
+          <div class="ticker-item">🎢 <span class="label">Kingda Ka · Six Flags Great Adventure</span> — Posted <strong>45m</strong> · Actual <span class="gap-red">~28m</span> · <span class="gap-red">1.61× OFF</span></div>
+          <div class="ticker-item">✅ <span class="label">Lightning Rod · Dollywood</span> — Posted <strong>40m</strong> · Actual <span class="gap-green">~35m</span> · <span class="gap-green">ACCURATE</span></div>
+          <div class="ticker-item">🎢 <span class="label">Velocicoaster · Islands of Adventure</span> — Posted <strong>80m</strong> · Actual <span class="gap-red">~50m</span> · <span class="gap-red">1.60× OFF</span></div>
+          <div class="ticker-item">🎢 <span class="label">Iron Gwazi · Busch Gardens Tampa</span> — Posted <strong>60m</strong> · Actual <span class="gap-red">~40m</span> · <span class="gap-red">1.50× OFF</span></div>
+        </div>
+      </div>
+
+      <!-- ══════ ACCURACY LEADERBOARD ══════ -->
+      <section class="section section-wide" id="leaderboard" aria-label="Park wait time accuracy rankings">
+        <div class="section-eyebrow">Park Accuracy Index</div>
+        <h2>HOW ACCURATE IS <span class="red">YOUR</span> PARK?</h2>
+        <p class="section-sub">Ranked by average Accuracy Factor — posted wait time divided by actual guest-reported wait time. Higher means the posted time was further off. Updated continuously from crowdsourced reports.</p>
+        <div style="background:rgba(245,166,35,0.08);border:1px solid rgba(245,166,35,0.25);padding:10px 16px;margin-bottom:20px;font-family:var(--fm);font-size:11px;color:var(--amber);letter-spacing:0.06em;">
+          ⚠ SAMPLE DATA — Illustrative ratios shown while live crowdsourced reports are collected. Numbers will update automatically as guest reports come in.
+        </div>
+        <div class="leaderboard" role="table" aria-label="Theme park wait time accuracy rankings">
+          <div class="lb-header" role="row">
+            <span role="columnheader">#</span>
+            <span role="columnheader">Park</span>
+            <span role="columnheader" style="text-align:right">Ratio</span>
+            <span role="columnheader" style="text-align:right">Reports</span>
+            <span role="columnheader" style="text-align:right">Accuracy</span>
+          </div>
+          <a class="lb-row" href="/parks/epic-universe" role="row" aria-label="Epic Universe — 1.79x ratio, ranked #1">
+            <span class="lb-rank top3" role="cell">1</span>
+            <div role="cell"><div class="lb-park">Epic Universe</div><div class="lb-park-sub">Orlando, FL · Universal</div></div>
+            <span class="lb-val lb-factor-red" role="cell">1.79×</span>
+            <span class="lb-reports" role="cell">312 reports</span>
+            <span class="lb-tag off" role="cell">Significantly Off</span>
+          </a>
+          <a class="lb-row" href="/parks/islands-of-adventure" role="row" aria-label="Islands of Adventure — 1.68x ratio">
+            <span class="lb-rank top3" role="cell">2</span>
+            <div role="cell"><div class="lb-park">Islands of Adventure</div><div class="lb-park-sub">Orlando, FL · Universal</div></div>
+            <span class="lb-val lb-factor-red" role="cell">1.68×</span>
+            <span class="lb-reports" role="cell">287 reports</span>
+            <span class="lb-tag off" role="cell">Significantly Off</span>
+          </a>
+          <a class="lb-row" href="/parks/universal-studios-florida" role="row" aria-label="Universal Studios Florida — 1.64x ratio">
+            <span class="lb-rank top3" role="cell">3</span>
+            <div role="cell"><div class="lb-park">Universal Studios Florida</div><div class="lb-park-sub">Orlando, FL · Universal</div></div>
+            <span class="lb-val lb-factor-red" role="cell">1.64×</span>
+            <span class="lb-reports" role="cell">245 reports</span>
+            <span class="lb-tag off" role="cell">Significantly Off</span>
+          </a>
+          <a class="lb-row" href="/parks/six-flags-great-adventure" role="row" aria-label="Six Flags Great Adventure — 1.61x ratio">
+            <span class="lb-rank" role="cell">4</span>
+            <div role="cell"><div class="lb-park">Six Flags Great Adventure</div><div class="lb-park-sub">Jackson, NJ · Six Flags</div></div>
+            <span class="lb-val lb-factor-red" role="cell">1.61×</span>
+            <span class="lb-reports" role="cell">198 reports</span>
+            <span class="lb-tag off" role="cell">Significantly Off</span>
+          </a>
+          <a class="lb-row" href="/parks/magic-kingdom" role="row" aria-label="Magic Kingdom — 1.48x ratio">
+            <span class="lb-rank" role="cell">5</span>
+            <div role="cell"><div class="lb-park">Magic Kingdom</div><div class="lb-park-sub">Orlando, FL · Disney</div></div>
+            <span class="lb-val lb-factor-amber" role="cell">1.48×</span>
+            <span class="lb-reports" role="cell">421 reports</span>
+            <span class="lb-tag inflated" role="cell">Moderately Off</span>
+          </a>
+          <a class="lb-row" href="/parks/hollywood-studios" role="row" aria-label="Hollywood Studios — 1.45x ratio">
+            <span class="lb-rank" role="cell">6</span>
+            <div role="cell"><div class="lb-park">Hollywood Studios</div><div class="lb-park-sub">Orlando, FL · Disney</div></div>
+            <span class="lb-val lb-factor-amber" role="cell">1.45×</span>
+            <span class="lb-reports" role="cell">356 reports</span>
+            <span class="lb-tag inflated" role="cell">Moderately Off</span>
+          </a>
+          <a class="lb-row" href="/parks/six-flags-magic-mountain" role="row" aria-label="Six Flags Magic Mountain — 1.42x ratio">
+            <span class="lb-rank" role="cell">7</span>
+            <div role="cell"><div class="lb-park">Six Flags Magic Mountain</div><div class="lb-park-sub">Valencia, CA · Six Flags</div></div>
+            <span class="lb-val lb-factor-amber" role="cell">1.42×</span>
+            <span class="lb-reports" role="cell">176 reports</span>
+            <span class="lb-tag inflated" role="cell">Moderately Off</span>
+          </a>
+          <a class="lb-row" href="/parks/disneyland" role="row" aria-label="Disneyland — 1.39x ratio">
+            <span class="lb-rank" role="cell">8</span>
+            <div role="cell"><div class="lb-park">Disneyland</div><div class="lb-park-sub">Anaheim, CA · Disney</div></div>
+            <span class="lb-val lb-factor-amber" role="cell">1.39×</span>
+            <span class="lb-reports" role="cell">389 reports</span>
+            <span class="lb-tag inflated" role="cell">Moderately Off</span>
+          </a>
+          <a class="lb-row" href="/parks/busch-gardens-tampa" role="row" aria-label="Busch Gardens Tampa — 1.36x ratio">
+            <span class="lb-rank" role="cell">9</span>
+            <div role="cell"><div class="lb-park">Busch Gardens Tampa</div><div class="lb-park-sub">Tampa, FL · SeaWorld</div></div>
+            <span class="lb-val lb-factor-amber" role="cell">1.36×</span>
+            <span class="lb-reports" role="cell">134 reports</span>
+            <span class="lb-tag inflated" role="cell">Moderately Off</span>
+          </a>
+          <a class="lb-row" href="/parks/cedar-point" role="row" aria-label="Cedar Point — 1.12x accurate">
+            <span class="lb-rank" role="cell">10</span>
+            <div role="cell"><div class="lb-park">Cedar Point</div><div class="lb-park-sub">Sandusky, OH · Cedar Fair</div></div>
+            <span class="lb-val lb-factor-green" role="cell">1.12×</span>
+            <span class="lb-reports" role="cell">267 reports</span>
+            <span class="lb-tag accurate" role="cell">Accurate</span>
+          </a>
+          <a class="lb-row" href="/parks/dollywood" role="row" aria-label="Dollywood — 1.09x accurate">
+            <span class="lb-rank" role="cell">11</span>
+            <div role="cell"><div class="lb-park">Dollywood</div><div class="lb-park-sub">Pigeon Forge, TN</div></div>
+            <span class="lb-val lb-factor-green" role="cell">1.09×</span>
+            <span class="lb-reports" role="cell">145 reports</span>
+            <span class="lb-tag accurate" role="cell">Accurate</span>
+          </a>
+          <a class="lb-row" href="/parks/hersheypark" role="row" aria-label="Hersheypark — 1.07x accurate">
+            <span class="lb-rank" role="cell">12</span>
+            <div role="cell"><div class="lb-park">Hersheypark</div><div class="lb-park-sub">Hershey, PA</div></div>
+            <span class="lb-val lb-factor-green" role="cell">1.07×</span>
+            <span class="lb-reports" role="cell">112 reports</span>
+            <span class="lb-tag accurate" role="cell">Accurate</span>
+          </a>
+          <div class="lb-footer">
+            <span>Powered by <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> · Crowdsourced guest reports · Ratio = Posted ÷ Actual</span>
+            <a href="/report.html">Submit a report →</a>
+          </div>
+        </div>
+        <p class="lb-updated">Last updated: <time datetime="2026-03-21">March 21, 2026</time> · Data reflects all guest reports to date. Ratios are mathematical comparisons of posted vs. actual times, not assertions about park intentions.</p>
+      </section>
+
+      <!-- ══════ REPORT CTA ══════ -->
+      <div class="divider-full"></div>
+      <section class="section" aria-label="Submit your wait time report">
+        <div class="report-cta">
+          <div class="section-eyebrow" style="color:var(--red)">Contribute</div>
+          <h2>DID THE PARK <span class="red">GET IT WRONG</span> TODAY?</h2>
+          <p>The sign said 60 minutes. You waited 35. Report what actually happened and get a shareable receipt with your Accuracy Factor. Takes 30 seconds. No account needed.</p>
+          <a href="/report.html" class="cta-primary">Report Your Actual Wait →</a>
+        </div>
+      </section>
+
+      <!-- ══════ HOW IT WORKS ══════ -->
+      <div class="divider"></div>
+      <section class="section" id="how" aria-label="How WaitTimeTruth works">
+        <div class="section-eyebrow">How It Works</div>
+        <h2>THREE STEPS TO <span class="red">THE REAL NUMBER</span></h2>
+        <p class="section-sub">We compare what the sign says against what guests actually experience. The math is simple. The results are worth seeing.</p>
+        <div class="how-grid">
+          <article class="how-card">
+            <div class="how-num">01</div>
+            <h3>You Report Your Wait</h3>
+            <p class="how-text">Select your park and ride on <a href="/report.html" style="color:var(--red)">waittimetruth.com/report</a>, enter what the sign said and how long you actually waited. Or use the <a href="https://amusementrating.org" style="color:var(--green)" target="_blank" rel="noopener">AmusementRating Apple Watch app</a> to track it automatically in real time.</p>
+          </article>
+          <article class="how-card">
+            <div class="how-num">02</div>
+            <h3>We Calculate the Accuracy Ratio</h3>
+            <p class="how-text">We compare your actual wait against the park's official posted time from the <a href="https://queue-times.com" style="color:var(--dim)" target="_blank" rel="noopener">Queue-Times.com</a> API — which pulls directly from park systems and updates every 5 minutes — and calculate the ratio of posted to actual.</p>
+          </article>
+          <article class="how-card">
+            <div class="how-num">03</div>
+            <h3>You Get a Shareable Receipt</h3>
+            <p class="how-text">Get a receipt image showing how accurate the posted time was. Download it, tweet it, post it. Every report strengthens the data for every guest at every park. The more reports, the more useful the accuracy rankings become.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ══════ FAQ ══════ -->
+      <div class="divider"></div>
+      <section class="section" id="faq" aria-label="Frequently asked questions about theme park wait time accuracy">
+        <div class="section-eyebrow">Frequently Asked Questions</div>
+        <h2>WAIT TIME <span class="red">ACCURACY</span></h2>
+        <article class="faq-list">
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Are theme park posted wait times accurate?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">Based on crowdsourced data comparing posted wait times to actual guest-reported waits, posted times at many major theme parks consistently run higher than the actual experience. Across 20 major U.S. parks, the average posted-to-actual ratio is approximately 1.58×, meaning a posted 60-minute wait often takes around 38 minutes. The gap tends to be wider at parks that offer paid skip-the-line products like Lightning Lane, Express Pass, and Virtual Queue. WaitTimeTruth tracks it continuously with crowdsourced guest reports.</div></div>
+          </div>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Why are posted wait times often longer than actual waits?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">There are several documented reasons why posted wait times tend to run higher than actual waits. Many parks rely on manual operator estimates rather than automated tracking, which introduces human error that tends to round up. Disney Cast Members have explained that overestimating creates a "pleasant surprise" effect — guests who wait less than expected report higher satisfaction. Parks commonly overstate times near closing to manage end-of-night queue entry. These factors may also correlate with the availability of paid skip-the-line products, though the causal relationship is debated.</div></div>
+          </div>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">How accurate are Disney World posted wait times?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">Based on crowdsourced guest reports and independent data from TouringPlans, Disney World parks tend to post wait times that are 20–45% higher than the actual experience. TouringPlans found that actual wait times at EPCOT average just 60% of posted times, while Magic Kingdom and Hollywood Studios average 64%. Seven Dwarfs Mine Train tends to show especially large gaps near park closing. See our <a href="/parks/magic-kingdom" style="color:var(--red)">Magic Kingdom accuracy data</a> for ride-by-ride breakdowns.</div></div>
+          </div>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">How accurate are Universal posted wait times?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">Universal parks, including the new Epic Universe, show some of the largest gaps between posted and actual wait times. Guest reports indicate posted-to-actual ratios between 1.4× and 1.8×, meaning posted times may be 40–80% higher than the actual wait. See our <a href="/parks/epic-universe" style="color:var(--red)">Epic Universe accuracy data</a> for current numbers.</div></div>
+          </div>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Is Lightning Lane worth it at Disney World?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">Whether Lightning Lane is worth the cost depends on how accurate the posted wait time is when you're making the decision. If Disney posts a 75-minute wait but the actual wait turns out to be 45 minutes, you'd be paying $25 to skip a 45-minute wait, not a 75-minute one. WaitTimeTruth tracks the gap between posted and actual times so guests can evaluate whether Lightning Lane pricing reflects real wait conditions before they buy.</div></div>
+          </div>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Is Express Pass worth it at Universal?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">Universal Express Pass can cost $80–$300+ per person per day. If posted wait times consistently run 40–80% higher than actual waits, a family spending hundreds on Express Pass may be basing that decision on inflated numbers. Our data shows Universal parks averaging ratios between 1.57× and 1.79×. Parks like Dollywood and Cedar Point show ratios near 1.0×.</div></div>
+          </div>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">What is the posted-to-actual ratio?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">The posted-to-actual ratio is a simple calculation: Posted Wait Time ÷ Actual Wait Time. A ratio of 1.0× means the sign was perfectly accurate. Above 1.0× means the posted time was higher than reality. WaitTimeTruth classifies ratios above 1.5× as "Significantly Off," 1.15×–1.49× as "Moderately Off," 0.85×–1.14× as "Accurate," and below 0.85× as "Understated."</div></div>
+          </div>
+          <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <h3 itemprop="name" onclick="this.parentElement.classList.toggle('open')" role="button" tabindex="0">Where does WaitTimeTruth get its wait time data?</h3>
+            <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">Posted wait times are sourced from the Queue-Times.com Real Time API, which pulls directly from parks' official systems and updates every 5 minutes. Actual wait times are crowdsourced from guest reports submitted through waittimetruth.com and the AmusementRating Apple Watch app. All actual wait time data is self-reported and clearly labeled as such. Our ratios are mathematical comparisons, not assertions about any park's intentions or practices.</div></div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ══════ AR CTA ══════ -->
+      <div class="divider-full"></div>
+      <section class="section" aria-label="AmusementRating.org — go deeper than wait times">
+        <div class="ar-block">
+          <div class="section-eyebrow">Go Deeper</div>
+          <h2>AUDIT HOW THE PARK <span class="green">ACTUALLY OPERATES</span></h2>
+          <p>Wait times are one signal. <strong>AmusementRating.org</strong> lets you score dispatch intervals, restraint checks, staff engagement, and facility condition — and earn XP doing it. The Apple Watch app tracks waits automatically and lets you audit rides from your wrist in 10 seconds.</p>
+          <div class="ar-xp">⚡ +50 XP signup bonus · Free forever</div>
+          <br />
+          <a href="https://amusementrating.org" target="_blank" rel="noopener" class="cta-green">Join AmusementRating.org →</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════ FOOTER ══════ -->
+    <footer>
+      <nav aria-label="Footer navigation">
+        <a href="/">WaitTimeTruth.com</a> · <a href="/report.html">Report Your Wait</a> · <a href="#leaderboard">Park Index</a> · <a href="/about">About</a> · <a href="/methodology">Methodology</a> · <a href="/media">Media</a> · <a href="#faq">FAQ</a> · <a href="/parks/epic-universe">Epic Universe</a> · <a href="/parks/magic-kingdom">Magic Kingdom</a> · <a href="/parks/cedar-point">Cedar Point</a> · <a href="https://amusementrating.org" target="_blank" rel="noopener">AmusementRating.org</a> · <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+      </nav>
+      <p>© 2026 Amusement Standards LLC · Asbury Park, NJ · A <a href="https://ratingvalue.org" target="_blank" rel="noopener">RatingValue.org</a> Project</p>
+      <p>Powered by <a href="https://queue-times.com" target="_blank" rel="noopener">Queue-Times.com</a> · Wait time data is crowdsourced and self-reported. Posted-to-actual ratios are mathematical comparisons, not assertions about any park's intentions or practices.</p>
+    </footer>
+
+    <!-- ══════ JS ══════ -->
+    <script>
+      // FAQ toggle — keyboard accessible
+      document.querySelectorAll('.faq-item h3').forEach(q => {
+        q.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); q.click(); }
+        });
+      });
+
+      // Mobile nav hamburger
+      const hamburger = document.getElementById('navHamburger');
+      const mobileMenu = document.getElementById('navMobileMenu');
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('open', isOpen);
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+      // Close menu when a link is tapped
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+    </script>
+  </body>
+</html>
